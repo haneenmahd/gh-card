@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
+import { Newsreader } from 'next/font/google';
+
+const newsreader = Newsreader({ style: 'italic', subsets: ['latin'] });
 
 interface UserData {
   login: string
   avatar_url: string
   description: string
-  url: string
+  html_url: string
 }
 
 export default async function page() {
@@ -30,8 +33,8 @@ export default async function page() {
   }
 
   return (
-    <div className='flex flex-col justify-between h-screen w-screen py-20'>
-      <main>
+    <div className='flex flex-col justify-between min-h-screen max-w-screen py-20 sm:gap-10 md:gap-0'>
+      <main className='z-10'>
         <div className='text-center px-3'>
           <h1 className="text-3xl md:text-4xl lg:text-6xl leading-tight tracking-tighter font-bold text-black/80">
             <Balancer>Generate GitHub Badge in seconds</Balancer>
@@ -88,24 +91,32 @@ export default async function page() {
         </form>
       </main>
 
-      <footer className='w-full text-sm md:text-base flex flex-col gap-2 md:flex-row items-center justify-end'>
-        <p className='text-gray-500'>Crafted by</p>
+      <footer className='h-full w-full text-sm md:text-base flex flex-col gap-4 items-center justify-end z-10'>
+        <div className='flex flex-col gap-2 items-center md:flex-row'>
+          <p className={`${newsreader.className} italic tracking-tighter text-gray-500`}>
+            Crafted by
+          </p>
 
-        <a
-          href={data.url}
-          target='_blank'
-          className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl hover:bg-slate-50'>
-          <Image
-            className='max-w-[20px] h-fit rounded-full mr-2'
-            height={20}
-            width={20}
-            src={data.avatar_url}
-            alt={`Avatar for ${data.login}`}
-          />
+          <a
+            href={data.html_url}
+            target='_blank'
+            className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl bg-white/50 hover:bg-slate-50 shadow-sm transition-colors'>
+            <Image
+              className='max-w-[20px] h-fit rounded-full mr-2'
+              height={20}
+              width={20}
+              src={data.avatar_url}
+              alt={`Avatar for ${data.login}`}
+            />
 
-          <h3 className='text-sm font-medium'>{data.login}</h3>
-        </a>
+            <h3 className='text-sm font-medium'>{data.login}</h3>
+          </a>
+        </div>
+
+        <p className='text-xs text-black/40'>Copyright 2023 Haneen Mahdin</p>
       </footer>
+
+      <div className='blur-3xl h-[300px] w-[300px] fixed left-1/2 -bottom-44 -translate-x-1/2 bg-gradient-to-t from-black to-black/10'></div>
     </div>
   )
 }

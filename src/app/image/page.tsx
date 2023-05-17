@@ -36,15 +36,6 @@ const page = async ({ searchParams: { username, name } }: pageProps) => {
 
     return (
         <div className='w-fit mt-3 bg-slate-50 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm'>
-            <div className='h-[200px] w-[300px] bg-slate-500 overflow-hidden'>
-                <Image
-                    height={200}
-                    width={300}
-                    src={data.license.banner_url}
-                    alt={`Banner for ${data.full_name}`}
-                />
-            </div>
-
             <div className='p-5 bg-gradient-to-b from-white to-slate-50'>
                 <div className='flex flex-row'>
                     <div className="h-[50px] w-[50px] rounded-full bg-slate-300 mr-3 overflow-hidden">

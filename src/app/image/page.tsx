@@ -22,6 +22,9 @@ interface RepoData {
     forks_count: number
     open_issues_count: number
     topics: string[]
+    license: {
+        banner_url: string
+    }
 }
 
 
@@ -31,12 +34,15 @@ const page = async ({ searchParams: { username, name } }: pageProps) => {
     });
     const data: RepoData = await res.json();
 
-    console.log(data)
-
     return (
         <div className='w-fit mt-3 bg-slate-50 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm'>
-            <div className='h-[200px] bg-slate-500'>
-
+            <div className='h-[200px] w-[300px] bg-slate-500 overflow-hidden'>
+                <Image
+                    height={200}
+                    width={300}
+                    src={data.license.banner_url}
+                    alt={`Banner for ${data.full_name}`}
+                />
             </div>
 
             <div className='p-5 bg-gradient-to-b from-white to-slate-50'>

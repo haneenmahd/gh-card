@@ -41,6 +41,7 @@ export default function page() {
               placeholder='haneenmahd'
               type='text'
               autoCapitalize='off'
+              autoComplete='off'
             />
           </fieldset>
 
@@ -57,6 +58,7 @@ export default function page() {
               placeholder='tfl'
               type='text'
               autoCapitalize='off'
+              autoComplete='off'
             />
           </fieldset>
         </fieldset>

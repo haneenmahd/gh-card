@@ -5,8 +5,7 @@ const error = ({ error, reset }: {
     reset: () => void
 }) => (
     <div className="w-screen h-screen flex flex-col items-center justify-center">
-        <p>An error occured while generating image.</p>
-        <pre className="mt-2 text-red-500">{error.message}</pre>
+        <p className="text-center">An error occured while generating image.</p>
 
         <button
             className='py-2 px-10 mt-5 w-max bg-black text-white ring-1 ring-black rounded-md hover:bg-white hover:text-black transition-colors'

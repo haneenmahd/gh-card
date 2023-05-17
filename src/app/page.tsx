@@ -10,18 +10,16 @@ export default function page() {
 
     if (isValid) {
       redirect(`/image?username=${username}&name=${name}`);
-    } else {
-
     }
   }
 
   return (
     <div className='w-screen py-20'>
       <div className='text-center'>
-        <h1 className="leading-tight tracking-tighter text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-tr from-black to-black/25">
+        <h1 className="leading-tight tracking-tighter text-4xl md:text-6xl font-bold text-black/80">
           <Balancer>Generate GitHub Badge in seconds</Balancer>
         </h1>
-        <p className='mt-5 text-gray-500'>
+        <p className='text-sm leading-relaxed md:leading-normal md:text-base mt-3 md:mt-5 text-gray-500'>
           <Balancer>Write down your name and repository to download the badge</Balancer>
         </p>
       </div>
@@ -29,7 +27,7 @@ export default function page() {
       <form
         action={generateImage}
         className='mt-3 py-5 flex flex-col items-center justify-center'>
-        <fieldset className='flex flex-row gap-5 lg:gap-10 md:gap-5'>
+        <fieldset className='flex flex-col md:flex-row gap-5 lg:gap-10 md:gap-5'>
           <fieldset className='flex flex-col'>
             <label
               className='text-gray-500'

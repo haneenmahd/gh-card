@@ -10,6 +10,7 @@ interface pageProps {
 
 interface RepoData {
     name: string
+    description: string
     full_name: string
     owner: {
         login: string
@@ -34,22 +35,25 @@ const page = async ({ searchParams: { username, name } }: pageProps) => {
     });
     const data: RepoData = await res.json();
 
+    console.log(data);
+
     return (
         <div className='w-fit mt-3 bg-slate-50 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm'>
             <div className='p-5 bg-gradient-to-b from-white to-slate-50'>
                 <div className='flex flex-row'>
-                    <div className="h-[50px] w-[50px] rounded-full bg-slate-300 mr-3 overflow-hidden">
-                        <Image
-                            height={50}
-                            width={50}
-                            src={data.owner.avatar_url}
-                            alt={`Avatar for ${data.owner.login}`}
-                        />
-                    </div>
+                    <Image
+                        className='max-w-[50px] h-fit rounded-full mr-3'
+                        height={50}
+                        width={50}
+                        src={data.owner.avatar_url}
+                        alt={`Avatar for ${data.owner.login}`}
+                    />
                     <div className="flex flex-col">
                         <div className='mb-2'>
                             <h3 className='text-2xl font-medium'>{data.name}</h3>
                             <p className='text-slate-600'>{data.owner.login}</p>
+
+                            <p className='my-3 text-slate-400'>{data.description}</p>
                         </div>
 
                         <div className='flex flex-row gap-5'>

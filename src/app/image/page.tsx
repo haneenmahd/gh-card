@@ -32,7 +32,7 @@ interface RepoData {
 const page = async ({ searchParams: { username, name } }: pageProps) => {
     const res = await fetch(`https://api.github.com/repos/${username}/${name}`, {
         next: {
-            revalidate: 5 * 60
+            revalidate: 4 * 60 * 60
         }
     });
     const data: RepoData = await res.json();

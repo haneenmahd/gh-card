@@ -41,7 +41,14 @@ const page = async ({ searchParams: { username, name } }: pageProps) => {
 
             <div className='p-5 bg-gradient-to-b from-white to-slate-50'>
                 <div className='flex flex-row'>
-                    <div className="h-[50px] w-[50px] rounded-full bg-slate-300 mr-3" />
+                    <div className="h-[50px] w-[50px] rounded-full bg-slate-300 mr-3 overflow-hidden">
+                        <Image
+                            height={50}
+                            width={50}
+                            src={data.owner.avatar_url}
+                            alt={`Avatar for ${data.owner.login}`}
+                        />
+                    </div>
                     <div className="flex flex-col">
                         <div className='mb-2'>
                             <h3 className='text-2xl font-medium'>{data.name}</h3>

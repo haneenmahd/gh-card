@@ -88,7 +88,7 @@ export default async function page() {
 
           <button
             tabIndex={2}
-            className='py-2 px-10 mt-10 w-max text-white font-medium bg-black rounded-md outline-none hover:bg-black/70 transition-colors shadow-lg shadow-black/10 invalid:bg-gray-500 outline-2 focus-visible:outline-black'
+            className='py-2 px-10 mt-10 w-max text-white font-medium bg-gradient-to-b from-black to-black/80 hover:ring-4 ring-black/30 rounded-md outline-none transition-shadow shadow-lg shadow-black/10 invalid:bg-gray-500 outline-2 focus-visible:outline-black'
             role='button'>
             Generate
           </button>

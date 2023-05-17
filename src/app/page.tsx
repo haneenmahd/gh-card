@@ -14,7 +14,6 @@ interface UserData {
 
 export default async function page() {
   const res = await fetch('https://api.github.com/users/haneenmahd', {
-    cache: 'reload',
     next: {
       revalidate: 24 * 60 * 60 * 60 // after every day
     }

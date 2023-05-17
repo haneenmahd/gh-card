@@ -15,7 +15,7 @@ export default function page() {
 
   return (
     <div className='w-screen py-20'>
-      <div className='text-center'>
+      <div className='text-center px-2'>
         <h1 className="leading-tight tracking-tighter text-4xl md:text-6xl font-bold text-black/80">
           <Balancer>Generate GitHub Badge in seconds</Balancer>
         </h1>
@@ -30,7 +30,7 @@ export default function page() {
         <fieldset className='flex flex-col md:flex-row gap-5 lg:gap-10 md:gap-5'>
           <fieldset className='flex flex-col'>
             <label
-              className='text-gray-500'
+              className='text-gray-500 text-sm md:text-base'
               htmlFor='repo-username'>
               Username
             </label>
@@ -45,7 +45,7 @@ export default function page() {
 
           <fieldset className='flex flex-col'>
             <label
-              className='text-gray-500'
+              className='text-gray-500 text-sm md:text-base'
               htmlFor='repo-name'>
               Repository
             </label>

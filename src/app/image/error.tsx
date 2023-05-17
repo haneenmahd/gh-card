@@ -10,7 +10,7 @@ const error = ({ error, reset }: {
         <button
             className='py-2 px-10 mt-5 w-max bg-black text-white ring-1 ring-black rounded-md hover:bg-white hover:text-black transition-colors'
             onClick={reset}>
-            Try again.
+            Try again
         </button>
     </div>
 )

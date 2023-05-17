@@ -15,11 +15,11 @@ export default function page() {
 
   return (
     <div className='w-screen py-20'>
-      <div className='text-center px-2'>
-        <h1 className="leading-tight tracking-tighter text-4xl md:text-6xl font-bold text-black/80">
+      <div className='text-center px-3'>
+        <h1 className="text-3xl md:text-4xl lg:text-6xl leading-tight tracking-tighter font-bold text-black/80">
           <Balancer>Generate GitHub Badge in seconds</Balancer>
         </h1>
-        <p className='text-sm leading-relaxed md:leading-normal md:text-base mt-3 md:mt-5 text-gray-500'>
+        <p className='text-base md:text-sm leading-relaxed md:leading-normal mt-3 md:mt-5 text-gray-500'>
           <Balancer>Write down your name and repository to download the badge</Balancer>
         </p>
       </div>
@@ -40,6 +40,7 @@ export default function page() {
               className='p-2 mt-3 bg-slate-50 rounded-md outline-none ring-1 ring-slate-300 focus:ring-slate-400 transition-shadow'
               placeholder='haneenmahd'
               type='text'
+              autoCapitalize='off'
             />
           </fieldset>
 
@@ -55,6 +56,7 @@ export default function page() {
               className='p-2 mt-3 bg-slate-50 rounded-md outline-none ring-1 ring-slate-300 focus:ring-slate-400 transition-shadow'
               placeholder='tfl'
               type='text'
+              autoCapitalize='off'
             />
           </fieldset>
         </fieldset>

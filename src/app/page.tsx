@@ -62,6 +62,7 @@ export default async function page() {
                 type='text'
                 autoCapitalize='off'
                 autoComplete='off'
+                tabIndex={1}
               />
             </fieldset>
 
@@ -79,12 +80,14 @@ export default async function page() {
                 type='text'
                 autoCapitalize='off'
                 autoComplete='off'
+                tabIndex={2}
               />
             </fieldset>
           </fieldset>
 
           <button
-            className='py-2 px-10 mt-10 w-max text-white bg-black rounded-md outline-none hover:bg-black/70 transition-colors shadow-lg shadow-black/10 invalid:bg-gray-500'
+            tabIndex={3}
+            className='py-2 px-10 mt-10 w-max text-white font-medium bg-black rounded-md outline-none hover:bg-black/70 transition-colors shadow-lg shadow-black/10 invalid:bg-gray-500 outline-2 focus-visible:outline-black'
             role='submit'>
             Generate
           </button>
@@ -98,9 +101,10 @@ export default async function page() {
           </p>
 
           <a
+            tabIndex={4}
             href={data.html_url}
             target='_blank'
-            className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl bg-white/50 hover:bg-slate-50 shadow-sm transition-colors'>
+            className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl bg-white/50 hover:bg-slate-50 shadow-sm transition-colors focus-visible:outline-black focus-visible:bg-black/5'>
             <Image
               className='max-w-[20px] h-fit rounded-full mr-2'
               height={20}
@@ -116,7 +120,7 @@ export default async function page() {
         <p className='text-xs text-black/40'>Copyright 2023 Haneen Mahdin</p>
       </footer>
 
-      <div className='blur-3xl h-[300px] w-[300px] fixed left-1/2 -bottom-44 -translate-x-1/2 bg-gradient-to-t from-black to-black/10'></div>
+      <div className='blur-3xl h-[300px] w-[300px] fixed left-1/2 -bottom-64 md:-bottom-44 -translate-x-1/2 bg-gradient-to-t from-black to-black/10'></div>
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import Image from 'next/image'
 
 interface pageProps {
@@ -24,6 +25,21 @@ interface RepoData {
     topics: string[]
     license: {
         banner_url: string
+    }
+}
+
+export async function generateMetadata({ searchParams: { username, name } }: pageProps): Promise<Metadata> {
+    const res = await fetch(`https://api.github.com/repos/${username}/${name}`, {
+        next: {
+            revalidate: 60 * 60 * 60 // after every hour
+        }
+    });
+    const data: RepoData = await res.json();
+
+    return {
+        title: `${data.name} by ${data.owner.login}`,
+        description: data.description,
+        icons: [data.owner.avatar_url]
     }
 }
 

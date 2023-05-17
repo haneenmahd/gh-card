@@ -37,10 +37,10 @@ export default async function page() {
       <main className='z-10'>
         <div className='text-center px-3'>
           <h1 className="text-3xl md:text-4xl lg:text-6xl leading-tight tracking-tighter font-bold text-black/80">
-            <Balancer>Generate GitHub Badge in seconds</Balancer>
+            <Balancer>Quickly generate GitHub repository card</Balancer>
           </h1>
           <p className='text-base md:text-sm leading-relaxed md:leading-normal mt-3 md:mt-5 text-gray-500'>
-            <Balancer>Write down your name and repository to download the badge</Balancer>
+            <Balancer>Write down your name and repository to download the card</Balancer>
           </p>
         </div>
 

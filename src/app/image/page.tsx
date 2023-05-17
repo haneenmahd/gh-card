@@ -94,6 +94,8 @@ const page = async ({ searchParams: { username, name } }: pageProps) => {
                     </div>
                 </div>
             </div>
+
+            <div className='blur-3xl h-[300px] w-[300px] fixed left-1/2 -bottom-64 md:-bottom-44 -translate-x-1/2 bg-gradient-to-t from-black to-black/10'></div>
         </div>
     )
 }

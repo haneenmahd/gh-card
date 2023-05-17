@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import type { FC } from 'react'
 
 interface pageProps {
     searchParams: {
@@ -28,11 +27,10 @@ interface RepoData {
     }
 }
 
-
 const page = async ({ searchParams: { username, name } }: pageProps) => {
     const res = await fetch(`https://api.github.com/repos/${username}/${name}`, {
         next: {
-            revalidate: 4 * 60 * 60
+            revalidate: 60 * 60 * 60 // after every hour
         }
     });
     const data: RepoData = await res.json();
@@ -77,8 +75,6 @@ const page = async ({ searchParams: { username, name } }: pageProps) => {
                             </p>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

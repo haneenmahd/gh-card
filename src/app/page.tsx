@@ -14,6 +14,7 @@ interface UserData {
 
 export default async function page() {
   const res = await fetch('https://api.github.com/users/haneenmahd', {
+    cache: 'reload',
     next: {
       revalidate: 24 * 60 * 60 * 60 // after every day
     }
@@ -62,7 +63,7 @@ export default async function page() {
                 type='text'
                 autoCapitalize='off'
                 autoComplete='off'
-                tabIndex={1}
+                tabIndex={0}
               />
             </fieldset>
 
@@ -80,13 +81,13 @@ export default async function page() {
                 type='text'
                 autoCapitalize='off'
                 autoComplete='off'
-                tabIndex={2}
+                tabIndex={1}
               />
             </fieldset>
           </fieldset>
 
           <button
-            tabIndex={3}
+            tabIndex={2}
             className='py-2 px-10 mt-10 w-max text-white font-medium bg-black rounded-md outline-none hover:bg-black/70 transition-colors shadow-lg shadow-black/10 invalid:bg-gray-500 outline-2 focus-visible:outline-black'
             role='button'>
             Generate
@@ -101,7 +102,7 @@ export default async function page() {
           </p>
 
           <a
-            tabIndex={4}
+            tabIndex={3}
             href={data.html_url}
             target='_blank'
             className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl bg-white/50 hover:bg-slate-50 shadow-sm transition-colors focus-visible:outline-black focus-visible:bg-black/5'>
@@ -113,7 +114,7 @@ export default async function page() {
               alt={`Avatar for ${data.login}`}
             />
 
-            <h3 className='text-sm font-medium'>{data.login}</h3>
+            <div className='text-sm font-medium'>{data.login}</div>
           </a>
         </div>
 

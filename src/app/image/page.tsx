@@ -2,6 +2,9 @@ import { formatter } from '@/lib/formatter'
 import { Metadata } from 'next'
 import Image from 'next/image'
 
+export const dynamic = 'force-dynamic'
+export const runtime = 'edge'
+
 interface pageProps {
     searchParams: {
         username: string

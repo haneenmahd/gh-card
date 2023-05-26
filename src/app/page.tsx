@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
 import { Newsreader } from 'next/font/google';
+import Head from 'next/head';
 
 const newsreader = Newsreader({ style: 'italic', subsets: ['latin'] });
 
@@ -34,6 +35,10 @@ export default async function page() {
 
   return (
     <div className='flex flex-col justify-between min-h-screen max-w-screen py-20 sm:gap-10 md:gap-0'>
+      <Head>
+        <meta name="google-site-verification" content="gMh6iXEuJLTxNWmsDP1PTyFmEdubu7mOHpImHz4_ZAI" />
+      </Head>
+
       <main className='z-10'>
         <div className='text-center px-3'>
           <h1 className="text-3xl md:text-5xl lg:text-6xl leading-tight tracking-tighter font-bold text-black/80">

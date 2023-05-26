@@ -2,19 +2,25 @@ import { RepoData } from '@/lib/types'
 import Image from 'next/image'
 import type { FC } from 'react'
 import formatter from '@/lib/formatter';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface CardProps {
     data: RepoData
+    options: {
+        hideStars: boolean
+        hideIssues: boolean
+        hideForks: boolean
+    }
 }
 
-const Card: FC<CardProps> = ({ data }) => {
+const Card: FC<CardProps> = ({ data, options }) => {
     return (
-        <div className='w-fit mt-3 bg-slate-50 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm'>
+        <motion.div className='w-[400px] mt-3 bg-slate-50 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm'>
             <div className='p-5 bg-gradient-to-b from-white to-slate-50'>
                 <div className="flex flex-col">
                     <div className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl'>
                         <Image
-                            className='max-w-[20px] h-fit rounded-full mr-2'
+                            className='w-[20px] h-fit rounded-full mr-2'
                             height={20}
                             width={20}
                             src={data.owner.avatar_url}
@@ -30,27 +36,48 @@ const Card: FC<CardProps> = ({ data }) => {
                     </div>
 
                     <div className='flex flex-row gap-5'>
-                        <div>
-                            <p className='text-yellow-600'>
-                                {formatter(data.stargazers_count)} stars
-                            </p>
-                        </div>
+                        <AnimatePresence>
+                            {!options.hideStars ?
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ scale: 0, opacity: 0 }}>
+                                    <p className='text-yellow-600'>
+                                        {formatter(data.stargazers_count)} stars
+                                    </p>
+                                </motion.div>
+                                : null}
+                        </AnimatePresence>
 
-                        <div>
-                            <p className='text-zinc-500'>
-                                {formatter(data.open_issues_count)} issues
-                            </p>
-                        </div>
+                        <AnimatePresence>
+                            {!options.hideIssues ?
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ scale: 0, opacity: 0 }}>
+                                    <p className='text-zinc-500'>
+                                        {formatter(data.open_issues_count)} issues
+                                    </p>
+                                </motion.div>
+                                : null}
+                        </AnimatePresence>
 
-                        <div>
-                            <p className='text-zinc-400'>
-                                {formatter(data.forks_count)} forks
-                            </p>
-                        </div>
+                        <AnimatePresence>
+                            {!options.hideForks ?
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ scale: 0, opacity: 0 }}>
+                                    <p className='text-zinc-400'>
+                                        {formatter(data.forks_count)} forks
+                                    </p>
+                                </motion.div>
+                                : null}
+                        </AnimatePresence>
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

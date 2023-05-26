@@ -1,106 +1,88 @@
-import { formatter } from '@/lib/formatter'
-import { Metadata } from 'next'
-import Image from 'next/image'
+'use client';
 
-export const dynamic = 'force-dynamic'
-export const runtime = 'edge'
+import Card from '@/components/Card';
+import { RepoData } from '@/lib/types';
+import html2canvas from 'html2canvas';
+import Loading from './loading';
+import { useEffect, useRef, useState } from 'react';
 
 interface pageProps {
     searchParams: {
-        username: string
-        name: string
-    }
+        username: string;
+        name: string;
+    };
 }
 
-interface RepoData {
-    name: string
-    description: string
-    full_name: string
-    owner: {
-        login: string
-        avatar_url: string
-        html_url: string
-    }
-    stargazers_count: number
-    watchers_count: number
-    language: string
-    forks_count: number
-    open_issues_count: number
-    topics: string[]
-    license: {
-        banner_url: string
-    }
-}
+const Page = ({ searchParams: { username, name } }: pageProps) => {
+    const htmlContentRef = useRef(null);
+    const [isDownloading, setDownloading] = useState(false);
+    const [data, setData] = useState<RepoData | null>(null);
 
-export async function generateMetadata({ searchParams: { username, name } }: pageProps): Promise<Metadata> {
-    const res = await fetch(`https://api.github.com/repos/${username}/${name}`, {
-        next: {
-            revalidate: 60 * 60 * 60 // after every hour
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch(`https://api.github.com/repos/${username}/${name}`, {
+                next: {
+                    revalidate: 60 * 60 * 60 // after every hour
+                }
+            });
+            const data: RepoData = await res.json();
+            setData(data);
+        };
+
+        fetchData();
+    }, [username, name]);
+
+    const handleDownload = () => {
+        setDownloading(true);
+    };
+
+    useEffect(() => {
+        if (isDownloading) {
+            const htmlContent = htmlContentRef.current;
+
+            html2canvas(htmlContent!, { scale: 4 }).then((canvas) => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'my_image.png';
+                link.click();
+            })
+                .finally(() => setDownloading(false));
         }
-    });
-    const data: RepoData = await res.json();
+    }, [isDownloading]);
 
-    return {
-        title: `${data.name} by ${data.owner.login}`,
-        description: data.description,
-        icons: [data.owner.avatar_url]
-    }
-}
-
-const page = async ({ searchParams: { username, name } }: pageProps) => {
-    const res = await fetch(`https://api.github.com/repos/${username}/${name}`, {
-        next: {
-            revalidate: 60 * 60 * 60 // after every hour
-        }
-    });
-    const data: RepoData = await res.json();
+    if (!data) return <Loading />;
 
     return (
-        <div className='w-fit mt-3 bg-slate-50 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm'>
-            <div className='p-5 bg-gradient-to-b from-white to-slate-50'>
-                <div className="flex flex-col">
-                    <div className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl'>
-                        <Image
-                            className='max-w-[20px] h-fit rounded-full mr-2'
-                            height={20}
-                            width={20}
-                            src={data.owner.avatar_url}
-                            alt={`Avatar for ${data.owner.login}`}
-                        />
-
-                        <h3 className='text-sm font-medium'>{data.owner.login}</h3>
-                    </div>
-
-                    <div className='my-2'>
-                        <h3 className='text-2xl font-medium'>{data.name}</h3>
-                        <p className='mt-1 text-slate-400'>{data.description}</p>
-                    </div>
-
-                    <div className='flex flex-row gap-5'>
-                        <div>
-                            <p className='text-yellow-600'>
-                                {formatter(data.stargazers_count)} stars
-                            </p>
-                        </div>
-
-                        <div>
-                            <p className='text-zinc-500'>
-                                {formatter(data.open_issues_count)} issues
-                            </p>
-                        </div>
-
-                        <div>
-                            <p className='text-zinc-400'>
-                                {formatter(data.forks_count)} forks
-                            </p>
-                        </div>
-                    </div>
+        <div className='flex flex-col items-center justify-center'>
+            {data && (
+                <div className='p-5'>
+                    <Card data={data} />
                 </div>
-            </div>
+            )}
 
-            <div className='blur-3xl h-[300px] w-[300px] fixed left-1/2 -bottom-64 md:-bottom-44 -translate-x-1/2 bg-gradient-to-t from-black to-black/10'></div>
+            {data && (
+                <div ref={htmlContentRef} className={`p-20 bg-gradient-to-b from-gray-100 to-gray-500 ${isDownloading ? 'block' : 'hidden'}`}>
+                    <Card data={data} />
+
+                    <p className='font-medium text-gray-300 mt-5 text-center'>
+                        Card.
+                    </p>
+                </div>
+            )}
+
+            <button
+                tabIndex={2}
+                className='z-0 py-2 px-10 mt-10 w-max text-white font-medium bg-gradient-to-b from-black to-black/80 hover:ring-4 ring-black/30 rounded-md outline-none transition-shadow shadow-lg shadow-black/10 invalid:bg-gray-500 outline-2 focus-visible:outline-black'
+                role='button'
+                onClick={handleDownload}
+                disabled={!data || isDownloading}
+            >
+                {isDownloading ? 'Downloading...' : 'Download Image'}
+            </button>
+
+            <div className='blur-3xl h-[300px] w-[300px] fixed left-1/2 -bottom-64 md:-bottom-44 -translate-x-1/2 bg-gradient-to-t from-black to-black/10 z-0'></div>
         </div>
-    )
-}
+    );
+};
 
-export default page
+export default Page;

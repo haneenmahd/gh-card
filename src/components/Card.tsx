@@ -1,8 +1,8 @@
-import { RepoData } from '@/lib/types'
 import Image from 'next/image'
-import type { FC } from 'react'
 import formatter from '@/lib/formatter';
 import { motion, AnimatePresence } from 'framer-motion';
+import type { FC } from 'react'
+import type { RepoData } from '@/lib/types'
 
 interface CardProps {
     data: RepoData

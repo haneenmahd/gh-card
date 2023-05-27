@@ -36,8 +36,8 @@ export default async function page() {
   return (
     <div className='flex flex-col justify-between min-h-screen max-w-screen py-20 sm:gap-10 md:gap-0'>
       <main className='z-10'>
-        <div className='text-center px-3'>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl leading-tight tracking-tighter font-bold text-black/80">
+        <div className='flex flex-col items-center text-center px-3'>
+          <h1 className="text-3xl max-w-4xl md:text-5xl lg:text-6xl leading-tight tracking-tighter font-bold text-black/80">
             <Balancer>Quickly generate GitHub repository card</Balancer>
           </h1>
           <p className='text-base md:text-sm leading-relaxed md:leading-normal mt-3 md:mt-5 text-gray-500'>

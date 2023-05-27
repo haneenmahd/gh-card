@@ -18,7 +18,7 @@ export default function Setting({ label, handleSelected }: SettingProps) {
 
     return (
         <div
-            className={`flex items-center justify-between border-b-[1px] last:border-b-0 p-3 hover:bg-slate-100 transition-colors select-none ${selected && 'bg-black text-slate-200 hover:bg-gray-800 border-gray-700'}`}
+            className={`flex items-center justify-between border-b-[1px] last:border-b-0 p-3 transition-colors select-none ${selected ? 'bg-black hover:bg-black/90 text-gray-300 border-gray-700' : 'hover:bg-slate-100'}`}
             onClick={() => setSelected(!selected)}>
             <p>{label}</p>
 

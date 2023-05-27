@@ -72,7 +72,7 @@ const Page = ({ searchParams: { username, name } }: pageProps) => {
             )}
 
             {data && (
-                <div ref={htmlContentRef} className={`absolute -top-full p-20 bg-gradient-to-b from-gray-100 to-gray-500 ${isDownloading ? 'block' : 'hidden'}`}>
+                <div ref={htmlContentRef} className={`absolute -top-full p-44 bg-gradient-to-b from-gray-100 to-gray-500 ${isDownloading ? 'block' : 'hidden'}`}>
                     <Card options={{
                         hideForks,
                         hideIssues,

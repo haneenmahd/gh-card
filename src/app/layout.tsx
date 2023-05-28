@@ -21,8 +21,10 @@ export default function RootLayout({
         <link rel='icon' href='/icon.jpeg' />
         <meta name="google-site-verification" content="gMh6iXEuJLTxNWmsDP1PTyFmEdubu7mOHpImHz4_ZAI" />
       </Head>
-      <body className={inter.className}>{children}</body>
-      <Analytics />
+      <body className={inter.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }

@@ -6,6 +6,7 @@ import html2canvas from 'html2canvas';
 import Loading from './loading';
 import { useEffect, useRef, useState } from 'react';
 import Setting from '@/components/Setting';
+import PreviewCard from '@/components/PreviewCard';
 
 interface pageProps {
     searchParams: {
@@ -46,7 +47,7 @@ const Page = ({ searchParams: { username, name } }: pageProps) => {
 
             html2canvas(htmlContent!, {
                 scale: 4,
-                allowTaint: true
+                useCORS: true
             }).then((canvas) => {
                 const link = document.createElement('a');
                 link.href = canvas.toDataURL('image/png');
@@ -73,7 +74,7 @@ const Page = ({ searchParams: { username, name } }: pageProps) => {
 
             {data && (
                 <div ref={htmlContentRef} className={`absolute -top-full p-44 bg-gradient-to-b from-gray-100 to-gray-500 ${isDownloading ? 'block' : 'hidden'}`}>
-                    <Card options={{
+                    <PreviewCard options={{
                         hideForks,
                         hideIssues,
                         hideStars

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image';
 import formatter from '@/lib/formatter';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -15,7 +17,7 @@ interface CardProps {
 
 const Card: FC<CardProps> = ({ data, options }) => {
     return (
-        <motion.div className='w-[400px] mt-3 bg-slate-50 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm'>
+        <motion.div className='text-left w-[400px] mt-3 bg-slate-50 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm'>
             <div className='p-5 bg-gradient-to-b from-white to-slate-50'>
                 <div className='flex flex-col'>
                     <div className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl'>

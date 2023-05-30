@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
 import { Newsreader } from 'next/font/google';
-import Head from 'next/head';
 
 const newsreader = Newsreader({ style: 'italic', subsets: ['latin'] });
 
@@ -12,6 +11,8 @@ interface UserData {
   description: string
   html_url: string
 }
+
+export const runtime = 'edge'
 
 export default async function page() {
   const res = await fetch('https://api.github.com/users/haneenmahd', {
@@ -40,6 +41,7 @@ export default async function page() {
           <h1 className="text-3xl max-w-4xl md:text-5xl lg:text-6xl leading-tight tracking-tighter font-bold text-black/80">
             <Balancer>Quickly generate GitHub repository card</Balancer>
           </h1>
+
           <p className='text-base md:text-sm leading-relaxed md:leading-normal mt-3 md:mt-5 text-gray-500'>
             <Balancer>Write down your name and repository to download the card</Balancer>
           </p>
@@ -93,7 +95,7 @@ export default async function page() {
             Generate
           </button>
         </form>
-      </main>
+      </main >
 
       <footer className='h-full w-full text-sm md:text-base flex flex-col gap-4 items-center justify-end z-10'>
         <div className='flex flex-col gap-2 items-center md:flex-row'>
@@ -122,6 +124,6 @@ export default async function page() {
       </footer>
 
       <div className='blur-3xl h-[300px] w-[300px] fixed left-1/2 -bottom-64 md:-bottom-44 -translate-x-1/2 bg-gradient-to-t from-black to-black/10'></div>
-    </div>
+    </div >
   )
 }

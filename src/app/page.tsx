@@ -84,13 +84,13 @@ export default async function page() {
                 type='text'
                 autoCapitalize='off'
                 autoComplete='off'
-                tabIndex={1}
+                tabIndex={0}
               />
             </fieldset>
           </fieldset>
 
           <button
-            tabIndex={2}
+            tabIndex={0}
             className='py-2 px-10 mt-10 w-max text-white font-medium bg-gradient-to-b from-black to-black/80 hover:ring-4 ring-black/30 rounded-md outline-none transition-shadow shadow-lg shadow-black/10 invalid:bg-gray-500 outline-2 focus-visible:outline-black'
             role='button'>
             Generate
@@ -105,7 +105,7 @@ export default async function page() {
           </p>
 
           <a
-            tabIndex={3}
+            tabIndex={0}
             href={data.html_url}
             target='_blank'
             className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl bg-white/50 hover:bg-slate-50 shadow-sm transition-colors focus-visible:outline-black focus-visible:bg-black/5'>

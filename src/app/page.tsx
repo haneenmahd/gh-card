@@ -9,7 +9,7 @@ export const dynamic = 'auto';
 const newsreader = Newsreader({
   style: 'italic',
   subsets: ['latin'],
-  weight: '500'
+  weight: '500',
 });
 
 interface UserData {

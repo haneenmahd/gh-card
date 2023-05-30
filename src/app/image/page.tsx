@@ -4,7 +4,7 @@ import Setting from '@/components/Setting';
 import PreviewCard from '@/components/PreviewCard';
 import type { RepoData } from '@/lib/types';
 import timeout from '@/lib/timeout';
-import { revalidatePath, revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 
 interface pageProps {
     searchParams: {

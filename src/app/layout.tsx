@@ -2,7 +2,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { Metadata } from 'next';
 
-const inter = Inter({ style: 'normal', subsets: ['latin'] })
+const inter = Inter({ style: 'normal', subsets: ['latin'], preload: true })
 
 export const metadata: Metadata = {
   icons: ['/'],

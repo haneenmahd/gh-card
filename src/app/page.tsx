@@ -2,13 +2,15 @@ import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
 import { Newsreader } from 'next/font/google';
-import timeout from '@/lib/timeout';
 
 export const runtime = 'edge'
 export const dynamic = 'auto';
 
-
-const newsreader = Newsreader({ style: 'italic', subsets: ['latin'], weight: '500' });
+const newsreader = Newsreader({
+  style: 'italic',
+  subsets: ['latin'],
+  weight: '500'
+});
 
 interface UserData {
   login: string

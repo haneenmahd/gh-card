@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
 import { Newsreader } from 'next/font/google';
+import timeout from '@/lib/timeout';
 
 const newsreader = Newsreader({ style: 'italic', subsets: ['latin'] });
 
@@ -17,7 +18,7 @@ export const runtime = 'edge'
 export default async function page() {
   const res = await fetch('https://api.github.com/users/haneenmahd', {
     next: {
-      revalidate: 24 * 60 * 60 * 60 // after every day
+      revalidate: timeout(24)
     }
   });
 

@@ -4,7 +4,11 @@ import Balancer from 'react-wrap-balancer';
 import { Newsreader } from 'next/font/google';
 import timeout from '@/lib/timeout';
 
-const newsreader = Newsreader({ style: 'italic', subsets: ['latin'] });
+export const runtime = 'edge'
+export const dynamic = 'auto';
+
+
+const newsreader = Newsreader({ style: 'italic', subsets: ['latin'], weight: '500' });
 
 interface UserData {
   login: string
@@ -13,13 +17,9 @@ interface UserData {
   html_url: string
 }
 
-export const runtime = 'edge'
-
 export default async function page() {
   const res = await fetch('https://api.github.com/users/haneenmahd', {
-    next: {
-      revalidate: timeout(24)
-    }
+    cache: 'force-cache'
   });
 
   const data: UserData = await res.json();
@@ -121,7 +121,7 @@ export default async function page() {
           </a>
         </div>
 
-        <p className='text-xs text-black/40'>Copyright 2023 Haneen Mahdin</p>
+        <p className='text-xs text-gray-500'>Copyright 2023 Haneen Mahdin</p>
       </footer>
 
       <div className='blur-3xl h-[300px] w-[300px] fixed left-1/2 -bottom-64 md:-bottom-44 -translate-x-1/2 bg-gradient-to-t from-black to-black/10'></div>

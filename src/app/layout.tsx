@@ -1,12 +1,11 @@
-import Head from 'next/head'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/react';
 import { Metadata } from 'next';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ style: 'normal', subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  icons: ['/'],
   metadataBase: new URL('https://gh-card.vercel.app'),
   title: '(Card) - Quickly generate GitHub repository card',
   description: 'Generate and download github repository card in less than a second. Supaa fast!',
@@ -27,12 +26,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <link rel='icon' href='/icon.jpeg' />
-      </Head>
       <body className={inter.className}>
         {children}
-        <Analytics />
       </body>
     </html>
   )

@@ -29,11 +29,11 @@ export default async function page() {
   async function generateImage(formData: FormData) {
     'use server';
     const username = formData.get('repo-username');
-    const name = formData.get('repo-name');
-    const isValid = name !== '' && username !== '';
+    const repo = formData.get('repo-name');
+    const isValid = repo !== '' && username !== '';
 
     if (isValid) {
-      redirect(`/image?username=${username}&name=${name}`);
+      redirect(`/image?username=${username}&repo=${repo}`);
     }
   }
 

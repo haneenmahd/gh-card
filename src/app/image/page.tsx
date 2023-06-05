@@ -2,8 +2,12 @@
 
 import Setting from '@/components/Setting';
 import Card from '@/components/Card';
-import Loading from './loading';
+import useSWR from 'swr';
 import useRepo from '@/hooks/useRepo';
+import { AlertCircle, GitFork, Star } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import Loader from '@/components/Loader';
+import PreviewCard from '@/components/PreviewCard';
 
 interface pageProps {
     searchParams: {
@@ -12,16 +16,19 @@ interface pageProps {
     };
 }
 
-const store = {
-    hideForks: false,
-    hideIssues: false,
-    hideStars: false
-}
-
 const Page = async ({ searchParams: { username, repo } }: pageProps) => {
-    const { data, error, isLoading } = useRepo(username, repo);
+    const fetcher = () => fetch(`https://api.github.com/repos/${username}/${repo}`, {
+        next: {
+            revalidate: 60 * 60 * 60 // after every hour
+        }
+    }).then(res => res.json());
 
-    if (isLoading) return <Loading />;
+    const { data, error, isLoading } = useSWR('data', fetcher);
+    const [hideStars, setHideStars] = useState(false);
+    const [hideIssues, setHideIssues] = useState(false);
+    const [hideForks, setHideForks] = useState(false);
+
+    if (isLoading) return <Loader />;
 
     if (error) return <p>Error occured.</p>;
 
@@ -29,31 +36,28 @@ const Page = async ({ searchParams: { username, repo } }: pageProps) => {
         return (
             <div className='flex flex-col items-center justify-center'>
                 <div className='p-5'>
-                    <Card options={{
-                        hideForks: store.hideForks,
-                        hideIssues: store.hideIssues,
-                        hideStars: store.hideStars
-                    }} data={data} />
+                    <PreviewCard options={{ hideStars, hideIssues, hideForks }} data={data} />
                 </div>
 
-                <div className='z-10 w-96 mt-3 bg-slate-50 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm text-slate-600'>
-                    <Setting
-                        label='Hide stars'
-                        handleSelected={() => { }}
-                    />
+                <div className='flex flex-col items-center justify-center mt-5'>
+                    <h3 className='text-sm text-slate-500'>You can hide stars, issues and forks.</h3>
+                    <div className='flex items-center z-10 w-max mt-3 bg-slate-50 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm text-slate-600'>
+                        <Setting
+                            icon={(p) => <Star {...p} />}
+                            handleSelected={setHideStars}
+                        />
 
-                    <Setting
-                        label='Hide issues'
-                        handleSelected={() => { }}
-                    />
+                        <Setting
+                            icon={(p) => <AlertCircle {...p} />}
+                            handleSelected={setHideIssues}
+                        />
 
-                    <Setting
-                        label='Hide forks'
-                        handleSelected={() => { }}
-                    />
+                        <Setting
+                            icon={(p) => <GitFork {...p} />}
+                            handleSelected={setHideForks}
+                        />
+                    </div>
                 </div>
-
-                <div className='z-0 blur-3xl h-[300px] w-[300px] fixed left-1/2 -bottom-64 md:-bottom-44 -translate-x-1/2 bg-gradient-to-t from-black to-black/10'></div>
             </div>
         );
     };

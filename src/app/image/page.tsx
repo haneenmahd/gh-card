@@ -1,13 +1,11 @@
 'use client';
 
-import Setting from '@/components/Setting';
-import Card from '@/components/Card';
-import useSWR from 'swr';
+import { useState } from 'react';
 import useRepo from '@/hooks/useRepo';
 import { AlertCircle, GitFork, Star } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import Setting from '@/components/Setting';
 import Loader from '@/components/Loader';
-import PreviewCard from '@/components/PreviewCard';
+import Card from '@/components/Card';
 
 interface pageProps {
     searchParams: {
@@ -17,13 +15,7 @@ interface pageProps {
 }
 
 const Page = async ({ searchParams: { username, repo } }: pageProps) => {
-    const fetcher = () => fetch(`https://api.github.com/repos/${username}/${repo}`, {
-        next: {
-            revalidate: 60 * 60 * 60 // after every hour
-        }
-    }).then(res => res.json());
-
-    const { data, error, isLoading } = useSWR('data', fetcher);
+    const { data, error, isLoading } = useRepo(username, repo);
     const [hideStars, setHideStars] = useState(false);
     const [hideIssues, setHideIssues] = useState(false);
     const [hideForks, setHideForks] = useState(false);
@@ -36,7 +28,7 @@ const Page = async ({ searchParams: { username, repo } }: pageProps) => {
         return (
             <div className='flex flex-col items-center justify-center'>
                 <div className='p-5'>
-                    <PreviewCard options={{ hideStars, hideIssues, hideForks }} data={data} />
+                    <Card options={{ hideStars, hideIssues, hideForks }} data={data} />
                 </div>
 
                 <div className='flex flex-col items-center justify-center mt-5'>

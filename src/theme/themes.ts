@@ -19,10 +19,10 @@ const Themes: Record<string, Theme> = {
     text: {
       author: 'text-white',
       repoName: 'text-white',
-      repoDescription: 'text-white/70',
+      repoDescription: 'text-white',
       stars: 'text-yellow-600',
-      forks: 'text-white/60',
-      issues: 'text-white/60'
+      forks: 'text-white',
+      issues: 'text-white'
     },
     background: {
       container: 'bg-black',

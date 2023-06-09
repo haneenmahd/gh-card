@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from 'next/image';
 import formatter from '@/lib/formatter';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { FC } from 'react';

@@ -1,7 +1,3 @@
-const loading = () => {
-    return (
-        <div className="animate-spin h-[20px] w-[20px] rounded-full border-2 border-gray-200 border-t-black" />
-    )
-}
+import Loader from "@/components/Loader";
 
-export default loading
+export default Loader;

@@ -4,7 +4,8 @@ import Image from 'next/image';
 import formatter from '@/lib/formatter';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { FC } from 'react';
-import type { RepoData } from '@/lib/types';
+import type { RepoData, ThemeSelection } from '@/lib/types';
+import themeSelection from '@/theme/themes';
 
 interface CardProps {
     data: RepoData;
@@ -13,12 +14,13 @@ interface CardProps {
         hideIssues: boolean;
         hideForks: boolean;
     };
+    theme: ThemeSelection;
 }
 
-const Card: FC<CardProps> = ({ data, options }) => {
+const Card: FC<CardProps> = ({ data, options, theme }) => {
     return (
-        <motion.div className='text-left w-[400px] mt-3 bg-slate-50 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm'>
-            <div className='p-5 bg-gradient-to-b from-white to-slate-50'>
+        <motion.div className={`text-left w-[400px] mt-3 ${themeSelection(theme).background.container} rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm`}>
+            <div className={`p-5 bg-gradient-to-b ${themeSelection(theme).background.card}`}>
                 <div className='flex flex-col'>
                     <div className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl'>
                         <div className='relative w-[20px] h-[20px]'>
@@ -31,12 +33,12 @@ const Card: FC<CardProps> = ({ data, options }) => {
                             />
                         </div>
 
-                        <h3 className='ml-2 text-sm font-medium'>{data.owner.login}</h3>
+                        <h3 className={`ml-2 text-sm font-medium ${themeSelection(theme).text.author}`}>{data.owner.login}</h3>
                     </div>
 
                     <div className='my-2'>
-                        <h3 className='text-2xl font-medium'>{data.name}</h3>
-                        <p className='mt-1 text-slate-400'>{data.description}</p>
+                        <h3 className={`text-2xl font-medium ${themeSelection(theme).text.repoName}`}>{data.name}</h3>
+                        <p className={`mt-1 ${themeSelection(theme).text.repoDescription}`}>{data.description}</p>
                     </div>
 
                     <div className='flex flex-row gap-5'>
@@ -47,7 +49,7 @@ const Card: FC<CardProps> = ({ data, options }) => {
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ scale: 0, opacity: 0 }}
                                 >
-                                    <p className='text-yellow-600'>
+                                    <p className={themeSelection(theme).text.stars}>
                                         {formatter(data.stargazers_count)} stars
                                     </p>
                                 </motion.div>
@@ -61,7 +63,7 @@ const Card: FC<CardProps> = ({ data, options }) => {
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ scale: 0, opacity: 0 }}
                                 >
-                                    <p className='text-zinc-500'>
+                                    <p className={themeSelection(theme).text.issues}>
                                         {formatter(data.open_issues_count)} issues
                                     </p>
                                 </motion.div>
@@ -75,7 +77,7 @@ const Card: FC<CardProps> = ({ data, options }) => {
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ scale: 0, opacity: 0 }}
                                 >
-                                    <p className='text-zinc-400'>
+                                    <p className={themeSelection(theme).text.forks}>
                                         {formatter(data.forks_count)} forks
                                     </p>
                                 </motion.div>

@@ -5,9 +5,10 @@ import formatter from '@/lib/formatter';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { FC } from 'react';
 import type { RepoData, ThemeSelection } from '@/lib/types';
-import themeSelection from '@/theme/themes';
+import { isDarkTheme, isLightTheme, themeSelection } from '@/theme/themes';
+import cn from '@/lib/cn';
 
-interface CardProps {
+interface PreviewCardProps {
     data: RepoData;
     options: {
         hideStars: boolean;
@@ -17,39 +18,58 @@ interface CardProps {
     theme: ThemeSelection;
 }
 
-const PreviewCard: FC<CardProps> = ({ data, options, theme }) => {
-    const colors = {
-        container: themeSelection(theme).background.container,
-        card: themeSelection(theme).background.card,
-        author: themeSelection(theme).text.author,
-        repoName: themeSelection(theme).text.repoName,
-        repoDescription: themeSelection(theme).text.repoDescription,
+const PreviewCard: FC<PreviewCardProps> = ({ data, options, theme }) => {
+    const classes = {
+        container: cn('text-left w-[400px] mt-3 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm', {
+            'bg-slate-50': isLightTheme(theme),
+            'bg-black': isDarkTheme(theme)
+        }),
+        card: cn('p-5 bg-gradient-to-b', {
+            'from-white to-slate-50': isLightTheme(theme),
+            'from-black to-white/30': isDarkTheme(theme)
+        }),
+        authorCapsule: cn('w-[83px] flex flex-row items-center justify-start p-1 border rounded-2xl', {
+            'border-gray-200': isLightTheme(theme),
+            'border-white/20': isDarkTheme(theme)
+        }),
+        author: cn('pl-6 -mt-4 absolute top-50 text-sm font-medium', {
+            'text-gray-500': isLightTheme(theme),
+            'text-white/75': isDarkTheme(theme)
+        }),
+        repoName: cn('text-2xl font-medium', {
+            'text-black': isLightTheme(theme),
+            'text-white': isDarkTheme(theme)
+        }),
+        repoDescription: cn('mt-1', {
+            'text-gray-500': isLightTheme(theme),
+            'text-white/80': isDarkTheme(theme)
+        }),
         stars: themeSelection(theme).text.stars,
         issues: themeSelection(theme).text.issues,
         forks: themeSelection(theme).text.forks,
     }
 
     return (
-        <div className={`text-left w-[400px] mt-3 ${colors.container} rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm`}>
-            <div className={`p-5 bg-gradient-to-b ${colors.card}`}>
+        <motion.div className={classes.container}>
+            <div className={classes.card}>
                 <div className='flex flex-col'>
-                    <div className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl'>
+                    <div className={classes.authorCapsule}>
                         <div className='relative w-[20px] h-[20px]'>
-                            <Image
-                                height={20}
-                                width={20}
+                            {/* Use HTML Image to render properly.  */}
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
                                 className='rounded-full mr-2'
                                 src={data.owner.avatar_url}
                                 alt={`Avatar for ${data.owner.login}`}
                             />
                         </div>
 
-                        <h3 className={`ml-2 text-sm font-medium ${colors.author}`}>{data.owner.login}</h3>
+                        <h3 className={classes.author}>{data.owner.login}</h3>
                     </div>
 
                     <div className='my-2'>
-                        <h3 className={`text-2xl font-medium ${colors.repoName}`}>{data.name}</h3>
-                        <p className={`mt-1 ${colors.repoDescription}`}>{data.description}</p>
+                        <h3 className={classes.repoName}>{data.name}</h3>
+                        <p className={classes.repoDescription}>{data.description}</p>
                     </div>
 
                     <div className='flex flex-row gap-5'>
@@ -58,9 +78,8 @@ const PreviewCard: FC<CardProps> = ({ data, options, theme }) => {
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ scale: 0, opacity: 0 }}
-                                >
-                                    <p className={colors.stars}>
+                                    exit={{ scale: 0, opacity: 0 }}>
+                                    <p className='text-yellow-500'>
                                         {formatter(data.stargazers_count)} stars
                                     </p>
                                 </motion.div>
@@ -72,9 +91,8 @@ const PreviewCard: FC<CardProps> = ({ data, options, theme }) => {
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ scale: 0, opacity: 0 }}
-                                >
-                                    <p className={colors.issues}>
+                                    exit={{ scale: 0, opacity: 0 }}>
+                                    <p className='text-yellow-600'>
                                         {formatter(data.open_issues_count)} issues
                                     </p>
                                 </motion.div>
@@ -86,9 +104,8 @@ const PreviewCard: FC<CardProps> = ({ data, options, theme }) => {
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ scale: 0, opacity: 0 }}
-                                >
-                                    <p className={colors.forks}>
+                                    exit={{ scale: 0, opacity: 0 }}>
+                                    <p className='text-yellow-700'>
                                         {formatter(data.forks_count)} forks
                                     </p>
                                 </motion.div>
@@ -97,7 +114,7 @@ const PreviewCard: FC<CardProps> = ({ data, options, theme }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div >
     );
 };
 

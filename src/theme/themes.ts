@@ -31,7 +31,7 @@ const Themes: Record<string, Theme> = {
   }
 };
 
-const themeSelection = (selection: ThemeSelection) => {
+export const themeSelection = (selection: ThemeSelection) => {
   const theme = Themes[selection];
 
   if (!theme) {
@@ -41,4 +41,6 @@ const themeSelection = (selection: ThemeSelection) => {
   return theme;
 }
 
-export default themeSelection;
+export const isDarkTheme = (theme: ThemeSelection) => theme === "Dark";
+
+export const isLightTheme = (theme: ThemeSelection) => theme === "Light";

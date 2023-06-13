@@ -20,15 +20,15 @@ interface CardProps {
 
 const Card: FC<CardProps> = ({ data, options, theme }) => {
     const classes = {
-        container: cn('text-left w-[400px] mt-3 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm', {
+        container: cn('transition-all text-left w-[400px] mt-3 rounded-lg outline-none ring-1 ring-slate-300 overflow-clip shadow-sm', {
             'bg-slate-50': isLightTheme(theme),
             'bg-black': isDarkTheme(theme)
         }),
-        card: cn('p-5 bg-gradient-to-b', {
+        card: cn('transition-all p-5 bg-gradient-to-b', {
             'from-white to-slate-50': isLightTheme(theme),
             'from-black to-white/30': isDarkTheme(theme)
         }),
-        authorCapsule: cn('w-fit flex flex-row items-center justify-center p-1 pr-2 border rounded-2xl', {
+        authorCapsule: cn('transition-all w-fit flex flex-row items-center justify-center p-1 pr-2 border rounded-2xl', {
             'border-gray-200': isLightTheme(theme),
             'border-white/20': isDarkTheme(theme)
         }),
@@ -36,11 +36,11 @@ const Card: FC<CardProps> = ({ data, options, theme }) => {
             'text-gray-500': isLightTheme(theme),
             'text-white/75': isDarkTheme(theme)
         }),
-        repoName: cn('text-2xl font-medium', {
+        repoName: cn('transition-all text-2xl font-medium', {
             'text-black': isLightTheme(theme),
             'text-white': isDarkTheme(theme)
         }),
-        repoDescription: cn('mt-1', {
+        repoDescription: cn('transition-all mt-1', {
             'text-gray-500': isLightTheme(theme),
             'text-white/80': isDarkTheme(theme)
         }),

@@ -3,9 +3,6 @@ import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
 import { Newsreader } from 'next/font/google';
 
-export const runtime = 'edge'
-export const dynamic = 'auto';
-
 const newsreader = Newsreader({
   style: 'italic',
   subsets: ['latin'],

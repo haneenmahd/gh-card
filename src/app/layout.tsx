@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import { Inter } from 'next/font/google'
 import { Metadata } from 'next';
-import { SessionProvider } from 'next-auth/react';
+import Provider from '@/components/Provider';
 
 const inter = Inter({ style: 'normal', subsets: ['latin'], preload: true })
 
@@ -28,9 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider>
+        <Provider>
           {children}
-        </SessionProvider>
+        </Provider>
       </body>
     </html>
   )

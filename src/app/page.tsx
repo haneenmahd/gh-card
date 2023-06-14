@@ -1,8 +1,11 @@
+'use client'
+
 import Image from 'next/image';
 import Balancer from 'react-wrap-balancer';
 import GitHubConnect from '@/components/GitHubConnect';
 import { redirect } from 'next/navigation';
 import { Newsreader } from 'next/font/google';
+import { useSession } from 'next-auth/react';
 
 const newsreader = Newsreader({
   style: 'italic',
@@ -17,25 +20,15 @@ interface UserData {
   html_url: string
 }
 
-export default async function page() {
-  const res = await fetch('https://api.github.com/users/haneenmahd', {
-    cache: 'force-cache'
-  });
-
-  const data: UserData = await res.json();
+export default async function Page() {
+  // Next Auth
+  const { data: session } = useSession();
 
   async function generateImage(formData: FormData) {
-    'use server';
-    const username = formData.get('repo-username');
-    const repo = formData.get('repo-name');
-    const isValid = repo !== '' && username !== '';
-
-    if (isValid) {
-      redirect(`/image?username=${username}&repo=${repo}`);
-    }
+    // MARK: refactor
   }
 
-  return (
+  if (!session) return (
     <div className='flex flex-col justify-between min-h-screen max-w-screen py-20 sm:gap-10 md:gap-0'>
       <main className='z-10'>
         <div className='flex flex-col items-center text-center px-3'>
@@ -101,32 +94,12 @@ export default async function page() {
       </main >
 
       <footer className='h-full w-full text-sm md:text-base flex flex-col gap-4 items-center justify-end z-10'>
-        <div className='flex flex-col gap-2 items-center md:flex-row'>
-          <p className={`${newsreader.className} italic tracking-tighter text-gray-500`}>
-            Crafted by
-          </p>
-
-          <a
-            tabIndex={0}
-            href={data.html_url}
-            target='_blank'
-            className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl bg-white/50 hover:bg-slate-50 shadow-sm transition-colors focus-visible:outline-black focus-visible:bg-black/5'>
-            <Image
-              className='max-w-[20px] h-fit rounded-full mr-2'
-              height={20}
-              width={20}
-              src={data.avatar_url}
-              alt={`Avatar for ${data.login}`}
-            />
-
-            <div className='text-sm font-medium'>{data.login}</div>
-          </a>
-        </div>
-
         <p className='text-xs text-gray-500'>Copyright 2023 Haneen Mahdin</p>
       </footer>
 
       <div className='blur-3xl h-[300px] w-[300px] fixed left-1/2 -bottom-64 md:-bottom-44 -translate-x-1/2 bg-gradient-to-t from-black to-black/10'></div>
     </div >
   )
+
+  return <h1>My name is {session.user?.name}</h1>
 }

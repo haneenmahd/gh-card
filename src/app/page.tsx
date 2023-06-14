@@ -56,7 +56,7 @@ export default async function page() {
         <form
           action={generateImage}
           className='mt-3 py-5 flex flex-col items-center justify-center'>
-          <fieldset className='flex flex-col md:flex-row gap-5 lg:gap-10 md:gap-5'>
+          <fieldset className='flex flex-col gap-5'>
             <fieldset className='flex flex-col'>
               <label
                 className='text-gray-500 text-sm md:text-base'

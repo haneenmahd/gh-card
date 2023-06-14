@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
+import GitHubConnect from '@/components/GitHubConnect';
+import { redirect } from 'next/navigation';
 import { Newsreader } from 'next/font/google';
-import { ArrowRight } from 'lucide-react';
 
 const newsreader = Newsreader({
   style: 'italic',
@@ -39,11 +39,8 @@ export default async function page() {
     <div className='flex flex-col justify-between min-h-screen max-w-screen py-20 sm:gap-10 md:gap-0'>
       <main className='z-10'>
         <div className='flex flex-col items-center text-center px-3'>
-          <div className='cursor-pointer flex items-center justify-center gap-2 mb-5 px-2 py-1 rounded-full ring-1 ring-gray-300 hover:ring-gray-500 transition-shadow'>
-            <p className='text-sm text-gray-500 hover:text-gray-700'>Connect your GitHub account</p>
+          <GitHubConnect />
 
-            <ArrowRight size={14} />
-          </div>
           <h1 className="text-3xl max-w-4xl md:text-5xl lg:text-6xl leading-tight tracking-tighter font-bold text-black/80">
             <Balancer>Quickly generate GitHub repository card</Balancer>
           </h1>

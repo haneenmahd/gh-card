@@ -1,34 +1,10 @@
 'use client'
 
-import Image from 'next/image';
 import Balancer from 'react-wrap-balancer';
 import GitHubConnect from '@/components/GitHubConnect';
-import { redirect } from 'next/navigation';
-import { Newsreader } from 'next/font/google';
-import { useSession } from 'next-auth/react';
-
-const newsreader = Newsreader({
-  style: 'italic',
-  subsets: ['latin'],
-  weight: '500',
-});
-
-interface UserData {
-  login: string
-  avatar_url: string
-  description: string
-  html_url: string
-}
 
 export default async function Page() {
-  // Next Auth
-  const { data: session } = useSession();
-
-  async function generateImage(formData: FormData) {
-    // MARK: refactor
-  }
-
-  if (!session) return (
+  return (
     <div className='flex flex-col justify-between min-h-screen max-w-screen py-20 sm:gap-10 md:gap-0'>
       <main className='z-10'>
         <div className='flex flex-col items-center text-center px-3'>
@@ -44,7 +20,6 @@ export default async function Page() {
         </div>
 
         <form
-          action={generateImage}
           className='mt-3 py-5 flex flex-col items-center justify-center'>
           <fieldset className='flex flex-col gap-5'>
             <fieldset className='flex flex-col'>
@@ -100,6 +75,4 @@ export default async function Page() {
       <div className='blur-3xl h-[300px] w-[300px] fixed left-1/2 -bottom-64 md:-bottom-44 -translate-x-1/2 bg-gradient-to-t from-black to-black/10'></div>
     </div >
   )
-
-  return <h1>My name is {session.user?.name}</h1>
 }

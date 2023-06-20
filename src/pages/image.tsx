@@ -1,10 +1,10 @@
 import '../styles/globals.css';
 import { useEffect, useRef, useState } from 'react';
 import { AlertCircle, GitFork, Moon, Star, Sun } from 'lucide-react';
-import Setting from '@/components/Setting';
-import Card from '@/components/Card';
-import ThemeOption from '@/components/ThemeOption';
-import PreviewCard from '@/components/PreviewCard';
+import Setting from '@/components/settings/Setting';
+import Card from '@/components/card/Card';
+import ThemeOption from '@/components/theme/ThemeOption';
+import PreviewCard from '@/components/card/PreviewCard';
 import html2canvas from 'html2canvas';
 import timeout from '@/lib/timeout';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';

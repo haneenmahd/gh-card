@@ -1,9 +1,9 @@
 import '../styles/globals.css'
-import { Inter } from 'next/font/google'
+import { Inter, Hanken_Grotesk } from 'next/font/google'
 import { Metadata } from 'next';
-import Provider from '@/components/Provider';
+import Provider from '@/components/auth/Provider';
 
-const inter = Inter({ style: 'normal', subsets: ['latin'], preload: true })
+const inter = Hanken_Grotesk({ style: 'normal', subsets: ['latin'], preload: true })
 
 export const metadata: Metadata = {
   icons: ['/'],

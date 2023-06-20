@@ -1,3 +1,5 @@
+import { MouseEventHandler } from "react"
+
 export interface RepoData {
   name: string
   description: string
@@ -34,3 +36,5 @@ export interface Theme {
 }
 
 export type ThemeSelection = "Light" | "Dark";
+
+export type Action = MouseEventHandler;

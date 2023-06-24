@@ -11,7 +11,8 @@ const colors = {
         black: '#0000'
     },
     background: {
-        cta: 'linear-gradient(180deg, #424242 0%, #000000 100%)'
+        cta: 'linear-gradient(180deg, #424242 0%, #000000 100%)',
+        gray: '#ececec'
     },
     extras: {
         green: '#2CFF34',

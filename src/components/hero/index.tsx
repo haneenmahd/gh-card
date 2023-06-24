@@ -6,25 +6,12 @@ import PillInput from '../ui/PillInput';
 import PillButton from '../ui/PillButton';
 import { GitBranch } from 'react-feather';
 import icons from '@/theme/icons';
+import Section from '../section';
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-`;
-
-const Heading = styled.h1`
-    font-weight: ${fontWeight('600')};
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
-    max-width: clamp(50vw, 65vw, 70vw);
-    color: ${colors.text.primary};
-`;
-
-const Description = styled.p`
-    font-weight: ${fontWeight('350')};
-    font-size: clamp(0.5rem, 2.5vw, 1.25rem);
-    max-width: clamp(50vw, 65vw, 70vw);
-    color: ${colors.text.secondary};
+    gap: 2rem;
 `;
 
 interface HeroProps { }
@@ -34,22 +21,27 @@ const Hero: FC<HeroProps> = ({ }) => {
 
     return (
         <Container>
-            <Heading>Showcase your OSS projects with beautiful cards</Heading>
-            <Description>Get started by searching for your GitHub username and finding your repository.</Description>
-
-            <PillInput
-                label='github.com'
-                placeholder='Enter your username'
-                value={username}
-                onChange={setUsername}
+            <Section
+                title='(GH) Card'
+                description={<>A simple yet powerful tool to create your own GitHub repository card. Customise it and tailor it based on your design requirements.</>}
             />
 
-            <PillButton
-                label='Search for repositories'
-                icon={icons.gitBranch}
-                action={console.log}
+            <Section
+                title='About'
+                description={<>
+                    Built for both personal and professional usage, designed with personal preferences. Bare-features, <s>minimal</s> boring interface.
+                    Switch between different <u>styles</u> and <u>colors</u>. Share animated videos <i>(buy some credits)</i> and images. Private repo? <i>No problem</i>.
+                    No onboarding, ads, no ever.
+                </>}
             />
-        </Container>
+
+            < Section
+                title='Join'
+                description={<>
+                    We are currently in early beta. <u>Send us an email</u> with request to join and we'll try to get back to you eventually.
+                </>}
+            />
+        </Container >
     )
 }
 

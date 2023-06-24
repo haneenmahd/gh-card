@@ -1,5 +1,9 @@
 import localFont from 'next/font/local';
 
+type FontWeight = '350' | '500' | '600' | '700';
+
+export const fontWeight = (weight: FontWeight) => weight;
+
 const font = localFont({
     src: [
         {

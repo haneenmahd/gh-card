@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import font from '@/lib/font';
+import font from '@/theme/font';
 import { Metadata } from 'next';
 import Provider from '@/components/auth/Provider';
 import StyledComponentsRegistry from './registry';

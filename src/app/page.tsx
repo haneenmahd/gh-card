@@ -5,6 +5,8 @@ import Pill from '@/components/ui/Pill';
 
 import { GitHub } from 'react-feather';
 import icons from '@/theme/icons';
+import { signIn, useSession } from 'next-auth/react';
+import Hero from '@/components/hero';
 
 export default async function Page() {
   return (
@@ -12,8 +14,10 @@ export default async function Page() {
       <Pill
         icon={icons.github}
         label="Connect with GitHub"
-        action={console.log}
+        action={() => signIn()}
       />
+
+      <Hero />
 
       {/* Design the page without the tokens (no one would pay for it.) this is a personal project for learning purpose. */}
       {/* Support adding private repos using GitHub OAuth and Access Token using Next Auth */}

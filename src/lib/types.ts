@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react"
 
-export interface RepoData {
+export interface Repo {
   name: string
   description: string
   full_name: string

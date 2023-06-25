@@ -20,7 +20,6 @@ const Card = styled.div`
     border: 1px solid #E1E1E1;
     background: #FFF;
     transition: 300ms;
-    box-shadow: 0 20px 40px 0 #0D25FF20;
 
     *::selection {
         background: #0D25FF;
@@ -86,16 +85,30 @@ const RepoStars = styled.div`
 `;
 
 const GraphicContent = styled.div`
-    display: grid;
-    grid-template-row: auto auto;
     position: absolute;
     bottom: 0;
     right: 0;
 `;
 
-interface pageProps {
-
+interface BlurredCircleProps {
+    colorIntensity: '50' | '80' | 'full';
+    x: number;
+    y: number;
 }
+
+const BlurredCircle = styled.div<BlurredCircleProps>`
+    position: relative;
+    top: ${p => p.y}px;
+    left: ${p => p.x}px;
+    width: 119px;
+    height: 121px;
+    flex-shrink: 0;
+    border-radius: 121px;
+    background: #5462E0${p => p.colorIntensity === 'full' ? '' : p.colorIntensity};
+    filter: ${p => p.colorIntensity === 'full' ? 'blur(100px)' : `blur(${p.colorIntensity}px)`};
+`;
+
+interface pageProps { }
 
 const page: FC<pageProps> = ({ }) => {
     return (
@@ -115,6 +128,23 @@ const page: FC<pageProps> = ({ }) => {
                 </Info>
 
                 <GraphicContent>
+                    <BlurredCircle
+                        colorIntensity='full'
+                        x={0}
+                        y={200}
+                    />
+
+                    <BlurredCircle
+                        colorIntensity='80'
+                        x={-100}
+                        y={100}
+                    />
+
+                    <BlurredCircle
+                        colorIntensity='50'
+                        x={-200}
+                        y={0}
+                    />
                 </GraphicContent>
             </Card>
         </Container>

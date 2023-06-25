@@ -18,7 +18,10 @@ const colors = {
         green: '#2CFF34',
         darkPurple: '##3C2CFF',
         magenta: '#FF2CC4',
-        orange: '#FF6B2C'
+        orange: '#FF6B2C',
+        blue1: "#0011AE",
+        blue2: "#0E22D5",
+        blue3: '#0D25FF'
     }
 }
 

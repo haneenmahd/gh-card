@@ -3,6 +3,11 @@
 import styled from 'styled-components';
 import type { FC } from 'react'
 import { Repo } from '@/lib/types';
+import Rectangles from '../graphic/rectangles';
+import colors from '@/theme/colors';
+import Flow from '../graphic/flow';
+import Grid from '../graphic/grid';
+import Graphic from '../graphic';
 
 const Container = styled.div`
     position: relative;
@@ -106,9 +111,11 @@ const BlurredCircle = styled.div<BlurredCircleProps>`
 
 interface CardProps {
     repo: Repo;
+    graphicType: 'blurred' | 'flow' | 'grid' | 'rectangles';
+    flowType: 's-letter' | 'r-letter' | 'plus-levitated' | 'green-head';
 }
 
-const Card: FC<CardProps> = ({ repo }) => {
+const Card: FC<CardProps> = ({ repo, graphicType, flowType }) => {
     return (
         <Container>
             <Info>
@@ -125,19 +132,14 @@ const Card: FC<CardProps> = ({ repo }) => {
             </Info>
 
             <GraphicContent>
-                <BlurredCircle
-                    x={0}
-                    y={200}
-                />
-
-                <BlurredCircle
-                    x={-100}
-                    y={100}
-                />
-
-                <BlurredCircle
-                    x={-200}
-                    y={0}
+                <Graphic
+                    type={graphicType}
+                    childProps={{
+                        primaryColor: colors.extras.blue1,
+                        secondaryColor: colors.extras.blue2,
+                        tertiaryColor: colors.extras.blue3,
+                        type: flowType
+                    }}
                 />
             </GraphicContent>
         </Container>

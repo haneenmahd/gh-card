@@ -6,6 +6,7 @@ import Action from '@/components/editor/toolbar/actions/Action';
 import icons from '@/theme/icons';
 import Actions from '@/components/editor/toolbar/actions';
 import Toolbar from '@/components/editor/toolbar';
+import EditorProvider from '@/context/EditorContext';
 
 const Container = styled.div`
     height: 100vh;
@@ -17,12 +18,11 @@ const Container = styled.div`
 `;
 
 export default function Editor() {
-    const [username, setUsername] = useState('');
-    const [repo, setRepo] = useState('');
-
     return (
-        <Container>
-            <Toolbar />
-        </Container>
+        <EditorProvider>
+            <Container>
+                <Toolbar />
+            </Container>
+        </EditorProvider>
     );
 }

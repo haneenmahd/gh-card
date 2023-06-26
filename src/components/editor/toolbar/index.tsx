@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import RepoInput from "./repo-input";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Actions from "./actions";
+import { EditorContext } from "@/context/EditorContext";
 
 const Container = styled.div`
     display: flex;
@@ -26,8 +27,7 @@ const Spacer = styled.div`
 `;
 
 export default function Toolbar() {
-    const [username, setUsername] = useState('');
-    const [repo, setRepo] = useState('');
+    const { setUsername, setRepo } = useContext(EditorContext)!;
 
     return (
         <Container>

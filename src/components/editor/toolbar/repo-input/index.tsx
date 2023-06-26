@@ -21,7 +21,7 @@ const Seperator = styled.div`
   font-size: 20px;
   font-weight: ${fontWeight('500')};
   color: ${colors.text.tertiary};
-  padding-left: 5px;
+  padding-left: 0.2rem;
 `;
 
 interface RoundedInputProps {
@@ -35,17 +35,20 @@ const RoundedInput = styled.input.attrs({
   spellCheck: "false"
 }) <RoundedInputProps>`
   font-size: 16px;
-  min-width: 50px;
-  width: ${({ inputWidth }) => inputWidth}px;
+  width: 80px;
   border: none;
   outline: none;
   padding-left: 5px;
   color: ${colors.text.secondary};
-  transform: translate3d(0, 0, 0);
   transition: color 200ms,width 200ms cubic-bezier(0.64, 0.06, 0.08, 1.01);
 
   &:focus {
     color: ${colors.text.primary};
+  }
+
+  @media screen and (min-width: 767px) {
+    min-width: 50px;
+    width: ${({ inputWidth }) => inputWidth}px;
   }
 `;
 
@@ -62,7 +65,7 @@ export default function RepoInput({ setUsername, setRepo }: RepoInputProps) {
     <Container>
       <RoundedContainer>
         <RoundedInput
-          placeholder='User'
+          placeholder='user'
           inputWidth={(usernameLength * 7) + 30}
           onChange={e => {
             setUsername(e.target.value);
@@ -71,7 +74,7 @@ export default function RepoInput({ setUsername, setRepo }: RepoInputProps) {
           }} />
         <Seperator>/</Seperator>
         <RoundedInput
-          placeholder='Repo'
+          placeholder='repo'
           inputWidth={(repositoryLength * 7) + 30}
           onChange={e => {
             setRepo(e.target.value);

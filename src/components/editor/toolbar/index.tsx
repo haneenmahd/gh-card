@@ -9,11 +9,20 @@ const Container = styled.div`
     justify-content: space-between;
     width: 100%;
     padding-right: 2rem;
+
+    @media screen and (max-width: 480px) {
+        flex-direction: column;
+        padding-right: 0;
+    }
 `;
 
 const Spacer = styled.div`
     width: max-content;
     height: 100%;
+
+    @media screen and (max-width: 480px) {
+        display: none;
+    }
 `;
 
 export default function Toolbar() {

@@ -19,7 +19,7 @@ const NavBar: FC<NavBarProps> = ({ }) => {
         <Container>
             <Image src={Icon} alt="logo" width={40} height={40} />
 
-            <Link href="/">Login</Link>
+            <Link href="/editor">Editor</Link>
         </Container>
     )
 }

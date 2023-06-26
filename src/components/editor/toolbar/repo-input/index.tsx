@@ -37,11 +37,15 @@ const RoundedInput = styled.input.attrs({
   border: none;
   outline: none;
   padding-left: 5px;
-  color: ${colors.text.secondary};
+  color: ${colors.text.primary};
   transition: color 200ms,width 200ms cubic-bezier(0.64, 0.06, 0.08, 1.01);
+  
+  &:first-child {
+    color: ${colors.text.secondary};
 
-  &:focus {
-    color: ${colors.text.primary};
+    &:focus {
+      color: ${colors.text.primary};
+    }
   }
 
   @media screen and (min-width: 767px) {
@@ -64,7 +68,7 @@ export default function RepoInput({ setUsername, setRepo }: RepoInputProps) {
       <RoundedContainer>
         <RoundedInput
           placeholder='user'
-          inputWidth={(usernameLength * 7) + 30}
+          inputWidth={(usernameLength * 7) + 20}
           onChange={e => {
             setUsername(e.target.value);
             setUsernameLength(e.target.value.trim().length);
@@ -73,7 +77,7 @@ export default function RepoInput({ setUsername, setRepo }: RepoInputProps) {
         <Seperator>/</Seperator>
         <RoundedInput
           placeholder='repo'
-          inputWidth={(repositoryLength * 7) + 30}
+          inputWidth={(repositoryLength * 7) + 20}
           onChange={e => {
             setRepo(e.target.value);
             setRepositoryLength(e.target.value.trim().length);

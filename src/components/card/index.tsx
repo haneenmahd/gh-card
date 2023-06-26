@@ -1,16 +1,12 @@
 'use client';
 
 import styled from 'styled-components';
-import type { FC } from 'react'
 import { Repo } from '@/lib/types';
-import Rectangles from '../graphic/rectangles';
 import colors from '@/theme/colors';
-import Flow from '../graphic/flow';
-import Grid from '../graphic/grid';
 import Graphic from '../graphic';
+import type { FC } from 'react'
 
 const Container = styled.div`
-    position: relative;
     overflow: hidden;
     display: flex;
     align-items: flex-end;
@@ -89,24 +85,6 @@ const GraphicContent = styled.div`
     position: absolute;
     bottom: 0;
     right: 0;
-`;
-
-interface BlurredCircleProps {
-    x: number;
-    y: number;
-}
-
-const BlurredCircle = styled.div<BlurredCircleProps>`
-    position: relative;
-    top: ${p => p.y}px;
-    left: ${p => p.x}px;
-    width: 119px;
-    height: 121px;
-    flex-shrink: 0;
-    border-radius: 121px;
-    background: #5462E0;
-    filter: blur(80px);
-    transform: translate3d(0,0,0);
 `;
 
 interface CardProps {

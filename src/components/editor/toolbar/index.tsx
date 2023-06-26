@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import RepoInput from "./repo-input";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Actions from "./actions";
 import { EditorContext } from "@/context/EditorContext";
+import useRepo from "@/hooks/useRepo";
 
 const Container = styled.div`
     display: flex;
@@ -27,7 +28,16 @@ const Spacer = styled.div`
 `;
 
 export default function Toolbar() {
-    const { setUsername, setRepo } = useContext(EditorContext)!;
+    const { username, repo, setRepoData, setUsername, setRepo } = useContext(EditorContext)!;
+    const { data, error } = useRepo(username, repo);
+
+    useEffect(() => {
+        if (username !== '' && repo !== '' && data) setRepoData(data);
+    }, [username, repo]);
+
+    if (error) {
+        return <>Error occured while loading the data :(.</>;
+    }
 
     return (
         <Container>

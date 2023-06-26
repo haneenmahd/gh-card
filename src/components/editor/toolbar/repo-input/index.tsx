@@ -21,6 +21,7 @@ const Seperator = styled.div`
   font-size: 20px;
   font-weight: ${fontWeight('500')};
   color: ${colors.text.tertiary};
+  padding-left: 5px;
 `;
 
 interface RoundedInputProps {

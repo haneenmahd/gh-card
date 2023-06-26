@@ -41,6 +41,16 @@ const Button = styled.button`
     border: none;
     background: ${colors.text.primary};
     color: ${colors.basic.white};
+    box-shadow: 0 4px 0 0 ${colors.text.secondary};
+    transition: box-shadow 200ms;
+
+    &:hover {
+        box-shadow: 0 3px 0 0 ${colors.text.tertiary};
+    }
+
+    &:active {
+        scale: 0.98;
+    }
 `;
 
 interface ActionProps {

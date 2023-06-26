@@ -42,14 +42,15 @@ const Button = styled.button`
     background: ${colors.text.primary};
     color: ${colors.basic.white};
     box-shadow: 0 4px 0 0 ${colors.text.secondary};
-    transition: box-shadow 200ms;
+    transition: opacity 200ms, box-shadow 150ms, scale 120ms;
 
     &:hover {
-        box-shadow: 0 3px 0 0 ${colors.text.tertiary};
+        opacity: 0.9;
     }
 
     &:active {
-        scale: 0.98;
+        scale: 0.95;
+        box-shadow: 0 1px 0 0 ${colors.text.tertiary};
     }
 `;
 

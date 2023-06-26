@@ -30,8 +30,6 @@ interface RoundedInputProps {
 
 const RoundedInput = styled.input.attrs({
   type: "text",
-  autoCapitalize: "off",
-  autoComplete: "off",
   spellCheck: "false"
 }) <RoundedInputProps>`
   font-size: 16px;

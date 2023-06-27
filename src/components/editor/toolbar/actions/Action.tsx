@@ -31,7 +31,6 @@ const Label = styled.label`
 `;
 
 const Button = styled.button`
-    margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;

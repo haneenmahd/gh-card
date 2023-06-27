@@ -7,6 +7,7 @@ import Graphic from '../graphic';
 import type { FC } from 'react'
 
 const Container = styled.div`
+    position: relative;
     overflow: hidden;
     display: flex;
     align-items: flex-end;

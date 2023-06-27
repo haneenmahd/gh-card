@@ -7,26 +7,25 @@ const Container = styled.div`
     margin-top: 50px;
 `;
 
-interface SliderProps {
-
-}
+interface SliderProps { }
 
 const Slider: FC<SliderProps> = ({ }) => {
     const { graphic, repoData } = useContext(EditorContext)!;
-    const graphicType = graphic.substring(
+    const graphicType = graphic.indexOf("-") !== -1 ? graphic.substring(
         0,
-        graphic.indexOf('-') + 1
-    );
-    const flowType = graphic.substring(
-        graphic.indexOf("flow-") + 1
-    );
+        graphic.indexOf("-")
+    ) : graphic;
+
+    const flowType = graphic.indexOf("-") !== -1 ? graphic.substring(
+        graphic.indexOf("-")
+    ) : '';
 
     return (
         <Container>
             <Card
                 repo={repoData}
-                flowType={flowType}
-                graphicType={graphicType}
+                flowType={flowType as any}
+                graphicType={graphicType as any}
             />
         </Container>
     )

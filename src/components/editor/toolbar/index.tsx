@@ -6,6 +6,9 @@ import { EditorContext } from "@/context/EditorContext";
 import useRepo from "@/hooks/useRepo";
 
 const Container = styled.div`
+    position: fixed;
+    top: 0;
+    padding: 1rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -19,7 +22,7 @@ const Container = styled.div`
 `;
 
 const Spacer = styled.div`
-    width: max-content;
+    width: 10%;
     height: 100%;
 
     @media screen and (max-width: 480px) {
@@ -31,9 +34,9 @@ export default function Toolbar() {
     const { username, repo, setRepoData, setUsername, setRepo } = useContext(EditorContext)!;
     const { data, error } = useRepo(username, repo);
 
-    useEffect(() => {
+    const handleRepoInputUpdate = () => {
         if (username !== '' && repo !== '' && data) setRepoData(data);
-    }, [username, repo]);
+    }
 
     if (error) {
         return <>Error occured while loading the data :(.</>;
@@ -46,6 +49,7 @@ export default function Toolbar() {
             <RepoInput
                 setUsername={setUsername}
                 setRepo={setRepo}
+                onUpdate={handleRepoInputUpdate}
             />
 
             <Actions

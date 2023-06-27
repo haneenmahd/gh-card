@@ -24,9 +24,9 @@ const Slider: FC<SliderProps> = ({ }) => {
     return (
         <Container>
             <Card
+                repo={repoData}
                 flowType={flowType}
                 graphicType={graphicType}
-                repo={repoData}
             />
         </Container>
     )

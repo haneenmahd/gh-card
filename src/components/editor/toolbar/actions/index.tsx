@@ -4,6 +4,8 @@ import icons from "@/theme/icons";
 
 const Container = styled.div`
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
 `;
 
@@ -17,19 +19,16 @@ export default function Actions({ exportAction, shareAction, animateAction }: Ac
     return (
         <Container>
             <Action
-                label="Export"
                 icon={icons.save}
                 action={exportAction}
             />
 
             <Action
-                label="Share"
                 icon={icons.share}
                 action={shareAction}
             />
 
             <Action
-                label="Animate"
                 icon={icons.play}
                 action={animateAction}
             />

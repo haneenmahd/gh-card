@@ -55,20 +55,15 @@ const Button = styled.button`
 `;
 
 interface ActionProps {
-    label: string;
     icon: JSX.Element;
     action: () => void;
     disabled?: boolean;
 }
 
-export default function Action({ label, icon, action, disabled }: ActionProps) {
-    const buttonId = `action-btn-${label}`;
-
+export default function Action({ icon, action, disabled }: ActionProps) {
     return (
         <Container disabled={disabled}>
-            <Label htmlFor={buttonId}>{label}</Label>
-
-            <Button id={buttonId} onClick={action}>{icon}</Button>
+            <Button onClick={action}>{icon}</Button>
         </Container>
     )
 }

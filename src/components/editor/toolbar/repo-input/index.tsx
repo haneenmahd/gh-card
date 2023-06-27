@@ -57,9 +57,10 @@ const RoundedInput = styled.input.attrs({
 interface RepoInputProps {
   setUsername: (username: string) => void;
   setRepo: (repo: string) => void;
+  onUpdate: () => void;
 }
 
-export default function RepoInput({ setUsername, setRepo }: RepoInputProps) {
+export default function RepoInput({ setUsername, setRepo, onUpdate }: RepoInputProps) {
   const [usernameLength, setUsernameLength] = useState(0);
   const [repositoryLength, setRepositoryLength] = useState(0);
 
@@ -72,8 +73,9 @@ export default function RepoInput({ setUsername, setRepo }: RepoInputProps) {
           onChange={e => {
             setUsername(e.target.value);
             setUsernameLength(e.target.value.trim().length);
-
-          }} />
+          }}
+          onBlur={onUpdate}
+        />
         <Seperator>/</Seperator>
         <RoundedInput
           placeholder='repo'
@@ -81,7 +83,9 @@ export default function RepoInput({ setUsername, setRepo }: RepoInputProps) {
           onChange={e => {
             setRepo(e.target.value);
             setRepositoryLength(e.target.value.trim().length);
-          }} />
+          }}
+          onBlur={onUpdate}
+        />
       </RoundedContainer>
     </Container>
   );

@@ -31,10 +31,16 @@ const Option = styled.button`
   border-radius: 30px;
   cursor: pointer;
   z-index: 2;
+  border: 1px solid transparent;
 
   &:disabled {
     cursor: not-allowed;
     opacity: 0.3;
+  }
+
+  &:focus-visible {
+    background: ${colors.text.quarternary}20;
+    border: 1px dashed ${colors.text.quarternary};
   }
 `;
 
@@ -56,8 +62,20 @@ export default function Customisation() {
             label: "Blur"
         },
         {
+            id: "flow-s-letter",
+            label: "S"
+        },
+        {
+            id: "flow-r-letter",
+            label: "R"
+        },
+        {
             id: "flow-green-head",
-            label: "Flow"
+            label: "Green Head"
+        },
+        {
+            id: "flow-plus-levitated",
+            label: "Plus Levitated"
         },
         {
             id: "grid",

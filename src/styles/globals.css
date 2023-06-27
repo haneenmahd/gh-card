@@ -33,12 +33,15 @@ svg #third {
 
 @keyframes load-svg {
   0% {
-    scale: 0;
-    transform: rotate3d(1, 0, 0, 30deg) translate3d(-100%, 0%, 100%);
+    transform: rotate(-30deg) translateX(-100%);
+  }
+
+  20% {
+    transform: rotate(0) translate(0);
   }
 
   50% {
-    scale: 2;
-    transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
+    transform: rotate(-10deg) translate(-20%);
+    opacity: 0.5;
   }
 }

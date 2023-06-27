@@ -5,7 +5,7 @@ import type { Graphic, Repo } from "@/lib/types";
 export default function EditorProvider({ children }: { children: React.ReactNode }) {
     const [username, setUsername] = useState('');
     const [repo, setRepo] = useState('');
-    const [graphic, setGraphic] = useState<Graphic>('blurred');
+    const [graphic, setGraphic] = useState<Graphic>('grid');
     const [repoData, setRepoData] = useState<Repo>({
         name: "next.js",
         full_name: "vercel/next.js",

@@ -20,7 +20,7 @@ const Container = styled.div`
     transition: 300ms;
 
     *::selection {
-        background: #0D25FF;
+        background: ${colors.text.primary};
     }
 `;
 
@@ -29,14 +29,14 @@ const Info = styled.div`
 `;
 
 const RepoName = styled.div`
-    color: #0D25FF;
+    color: ${colors.text.primary};
     font-size: 63.723px;
     line-height: 126.5%;
     letter-spacing: -2.23px;
 `;
 
 const RepoDescription = styled.div`
-    color: #0D25FF;
+    color: ${colors.text.primary};
     font-size: 23.896px;
     line-height: 126.5%;
     letter-spacing: -0.836px;
@@ -54,12 +54,12 @@ const RepoExtraInfo = styled.div`
     height: 29.206px;
     flex-shrink: 0;
     border-radius: 3.983px;
-    border: 1.328px solid #0D25FF;
+    border: 1.328px solid ${colors.text.primary};
     background: #FFF;
 `;
 
 const RepoAuthorName = styled.div`
-    color: #0D25FF;
+    color: ${colors.text.primary};
     font-size: 15.931px;
     font-weight: 450;
     line-height: 126.5%;
@@ -70,11 +70,11 @@ const RepoAuthorName = styled.div`
 const RepoDivider = styled.div`
     height: 10.6px;
     width: 10.6px;
-    background-color: #0D25FF;
+    background-color: ${colors.text.primary};
 `;
 
 const RepoStars = styled.div`
-    color: #0D25FF;
+    color: ${colors.text.primary};
     font-size: 15.931px;
     font-weight: 450;
     line-height: 126.5%;

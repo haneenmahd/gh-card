@@ -13,3 +13,32 @@
   background-color: black;
   color: white;
 }
+
+div > svg * {
+  transform: translate3d(0, 0, 0);
+  animation: load-svg 1s ease-in-out;
+}
+
+svg #first {
+  animation-delay: 200ms;
+}
+
+svg #second {
+  animation-delay: 300ms;
+}
+
+svg #third {
+  animation-delay: 400ms;
+}
+
+@keyframes load-svg {
+  0% {
+    scale: 0;
+    transform: rotate3d(1, 0, 0, 30deg) translate3d(-100%, 0%, 100%);
+  }
+
+  50% {
+    scale: 2;
+    transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
+  }
+}

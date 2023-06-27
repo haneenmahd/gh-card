@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useContext } from "react";
 import EditorContext from "@/context/EditorContext";
 import colors from "@/theme/colors";
+import Label from "../label";
 import styled from "styled-components";
 import { Graphic } from "@/lib/types";
 
@@ -10,10 +11,6 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     gap: 10px;
-`;
-
-const Label = styled.label`
-    color: ${colors.text.secondary};
 `;
 
 const OptionsContainer = styled.div`
@@ -33,8 +30,12 @@ const Option = styled.button`
   max-width: auto;
   border-radius: 30px;
   cursor: pointer;
-  transition: 200ms;
   z-index: 2;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+  }
 `;
 
 const Indicator = styled.span<{ width: number; left: number }>`
@@ -55,7 +56,7 @@ export default function Customisation() {
             label: "Blur"
         },
         {
-            id: "flow-s-letter",
+            id: "flow-green-head",
             label: "Flow"
         },
         {
@@ -91,12 +92,14 @@ export default function Customisation() {
     }, [handleIndicatorUpdate]);
 
     return (
-        <Container>
+        <Container role="radio" aria-roledescription="Choose the theme for your card">
             <Label>Choose your theme</Label>
 
             <OptionsContainer onLoad={handleIndicatorUpdate} ref={containerRef}>
                 {options.map((option, index) => (
                     <Option
+                        role="option"
+                        disabled={option.label === "Blur"}
                         key={option.id}
                         tabIndex={0}
                         onClick={() => {

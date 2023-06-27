@@ -4,13 +4,16 @@ import styled from "styled-components";
 import EditorContext from "@/context/EditorContext";
 import Actions from "./actions";
 import useRepo from "@/hooks/useRepo";
+import Label from "../label";
 
 const Container = styled.div`
     padding: 1rem 3rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
+    gap: 10px;
 
     @media screen and (max-width: 480px) {
         flex-direction: column;
@@ -19,7 +22,7 @@ const Container = styled.div`
 `;
 
 export default function Toolbar() {
-    const { username, repo, setRepoData, setUsername, setRepo } = useContext(EditorContext)!;
+    const { username, repo, setRepoData, setUsername } = useContext(EditorContext)!;
     const { data } = useRepo(username, repo);
 
     const handleRepoInputUpdate = () => {
@@ -28,16 +31,10 @@ export default function Toolbar() {
 
     return (
         <Container>
+            <Label>Enter your username and repository</Label>
             <RepoInput
                 setUsername={setUsername}
-                setRepo={setRepo}
                 onUpdate={handleRepoInputUpdate}
-            />
-
-            <Actions
-                animateAction={console.log}
-                shareAction={console.log}
-                exportAction={console.log}
             />
         </Container>
     )

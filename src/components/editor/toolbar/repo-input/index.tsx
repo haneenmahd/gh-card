@@ -1,11 +1,13 @@
 import colors from '@/theme/colors';
-import { fontWeight } from '@/theme/font';
-import { useState } from 'react';
 import styled from 'styled-components';
+import { fontWeight } from '@/theme/font';
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  width: auto;
+  height: 36px;
+  max-width: 300px;
 `;
 
 const RoundedContainer = styled.div`
@@ -24,16 +26,13 @@ const Seperator = styled.div`
   padding-left: 0.2rem;
 `;
 
-interface RoundedInputProps {
-  inputWidth: number;
-}
-
 const RoundedInput = styled.input.attrs({
   type: "text",
   spellCheck: "false"
-}) <RoundedInputProps>`
+})`
   font-size: 16px;
-  width: 80px;
+  width: 100%;
+  background: none;
   border: none;
   outline: none;
   padding-left: 5px;
@@ -48,42 +47,29 @@ const RoundedInput = styled.input.attrs({
     }
   }
 
-  @media screen and (min-width: 767px) {
-    min-width: 50px;
-    width: ${({ inputWidth }) => inputWidth}px;
+  &::placeholder {
+    color: ${colors.text.quarternary};
   }
 `;
 
 interface RepoInputProps {
   setUsername: (username: string) => void;
-  setRepo: (repo: string) => void;
   onUpdate: () => void;
 }
 
-export default function RepoInput({ setUsername, setRepo, onUpdate }: RepoInputProps) {
-  const [usernameLength, setUsernameLength] = useState(0);
-  const [repositoryLength, setRepositoryLength] = useState(0);
-
+export default function RepoInput({ setUsername, onUpdate }: RepoInputProps) {
   return (
     <Container>
       <RoundedContainer>
         <RoundedInput
-          placeholder='user'
-          inputWidth={(usernameLength * 7) + 20}
-          onChange={e => {
-            setUsername(e.target.value);
-            setUsernameLength(e.target.value.trim().length);
-          }}
+          placeholder='vercel'
+          onChange={e => setUsername(e.target.value)}
           onBlur={onUpdate}
         />
         <Seperator>/</Seperator>
         <RoundedInput
-          placeholder='repo'
-          inputWidth={(repositoryLength * 7) + 20}
-          onChange={e => {
-            setRepo(e.target.value);
-            setRepositoryLength(e.target.value.trim().length);
-          }}
+          placeholder='next.js'
+          onChange={e => (e.target.value)}
           onBlur={onUpdate}
         />
       </RoundedContainer>

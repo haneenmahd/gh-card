@@ -17,7 +17,7 @@ const Slider: FC<SliderProps> = () => {
     ) : graphic;
 
     const flowType = graphic.indexOf("-") !== -1 ? graphic.substring(
-        graphic.indexOf("-")
+        graphic.indexOf("-") + 1
     ) : '';
 
     return (

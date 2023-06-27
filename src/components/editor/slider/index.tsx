@@ -1,6 +1,6 @@
-import Card from '@/components/card';
-import { EditorContext } from '@/context/EditorContext'
 import { useContext, type FC } from 'react'
+import EditorContext from '@/context/EditorContext'
+import Card from '@/components/card';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -9,7 +9,7 @@ const Container = styled.div`
 
 interface SliderProps { }
 
-const Slider: FC<SliderProps> = ({ }) => {
+const Slider: FC<SliderProps> = () => {
     const { graphic, repoData } = useContext(EditorContext)!;
     const graphicType = graphic.indexOf("-") !== -1 ? graphic.substring(
         0,

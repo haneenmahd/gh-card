@@ -2,7 +2,7 @@ interface BlurredProps {
     color: string;
 }
 
-export default function ({ color }: BlurredProps) {
+export default function Blurred({ color }: BlurredProps) {
     return (
         <svg width="377" height="225" viewBox="0 0 377 225" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <mask id="mask0_94_2" style={{ maskType: 'alpha' }} maskUnits="userSpaceOnUse" x="0" y="0" width="434" height="312">
@@ -25,8 +25,8 @@ export default function ({ color }: BlurredProps) {
                 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="4.72883" height="6.57915">
                     <use xlinkHref="#image0_94_2" transform="scale(0.00231238 0.00321719)" />
                 </pattern>
-                <filter id="filter0_f_94_2" x="61.8442" y="2.8178" width="532" height="439" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <filter id="filter0_f_94_2" x="61.8442" y="2.8178" width="532" height="439" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
                     <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                     <feGaussianBlur stdDeviation="59.5" result="effect1_foregroundBlur_94_2" />
                 </filter>

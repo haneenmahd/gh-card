@@ -102,7 +102,7 @@ interface FlowProps {
     type: 's-letter' | 'r-letter' | 'plus-levitated' | 'green-head';
 }
 
-export default function ({ type }: FlowProps) {
+export default function Flow({ type }: FlowProps) {
     switch (type) {
         case 's-letter': return <SLetter />;
         case 'r-letter': return <RLetter />;

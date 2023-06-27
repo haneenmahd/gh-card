@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, createContext, useState } from "react";
 import type { Graphic, Repo } from "@/lib/types";
 
-export const EditorContext = createContext<{
+const EditorContext = createContext<{
     username: string;
     setUsername: Dispatch<SetStateAction<string>>;
     repo: string;
@@ -12,35 +12,4 @@ export const EditorContext = createContext<{
     setRepoData: Dispatch<SetStateAction<Repo>>;
 } | null>(null);
 
-export default function EditorProvider({ children }: { children: React.ReactNode }) {
-    const [username, setUsername] = useState('');
-    const [repo, setRepo] = useState('');
-    const [graphic, setGraphic] = useState<Graphic>('blurred');
-    const [repoData, setRepoData] = useState<Repo>({
-        name: "next.js",
-        full_name: "vercel/next.js",
-        owner: {
-            login: "vercel",
-            avatar_url: "https://avatars.githubusercontent.com/u/14985020?v=4",
-            html_url: "https://github.com/vercel",
-        },
-        description: "The React Framework",
-        stargazers_count: 108223,
-        language: "JavaScript",
-    })
-
-    return (
-        <EditorContext.Provider value={{
-            username,
-            setUsername,
-            repo,
-            setRepo,
-            graphic,
-            setGraphic,
-            repoData,
-            setRepoData
-        }}>
-            {children}
-        </EditorContext.Provider>
-    )
-}
+export default EditorContext;

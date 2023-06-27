@@ -4,7 +4,7 @@ export interface RectangleProps {
     tertiaryColor: string
 }
 
-export default function ({ primaryColor, secondaryColor, tertiaryColor }: RectangleProps) {
+export default function Rectangles({ primaryColor, secondaryColor, tertiaryColor }: RectangleProps) {
     return (
         <svg width="238" height="308" viewBox="0 0 238 308" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path

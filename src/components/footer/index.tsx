@@ -10,7 +10,7 @@ const Container = styled.nav`
     justify-content: space-between;
     gap: 5px;
     color: ${colors.text.secondary};
-    border-top: 1px solid ${colors.text.quarternary}50;
+    border-top: 1px solid ${colors.text.quarternary}40;
     padding-top: 1rem;
     margin-top: 1rem;
 `;

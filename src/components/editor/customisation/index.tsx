@@ -53,7 +53,7 @@ const Indicator = styled.span<{ width: number; left: number }>`
   border-radius: 30px;
   height: 80%;
   background: ${colors.text.quarternary}60;
-  transition: 300ms ease-out;
+  transition: 300ms ease;
   z-index: 1;
 `;
 

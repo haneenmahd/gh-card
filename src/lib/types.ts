@@ -1,6 +1,7 @@
 import { MouseEventHandler } from "react"
 
 export interface Repo {
+  id: number
   name: string
   description: string
   full_name: string

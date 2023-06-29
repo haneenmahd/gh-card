@@ -26,7 +26,15 @@ export default function Toolbar() {
     const handleRepoInputUpdate = async () => {
         if (username !== '' && repo !== '') {
             const data = await fetchRepo(username, repo);
-            setRepoData(data);
+
+            setRepoData((previousData => {
+                if (data.id !== null && data.id !== undefined) {
+                    console.log('id', data.id)
+                    return data;
+                }
+
+                return previousData;
+            }));
         }
     }
 

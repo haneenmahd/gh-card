@@ -18,9 +18,7 @@ export default function Graphic({ type, childProps }: GraphicProps) {
     switch (type) {
         case 'basic':
             return <Basic />;
-        // fix the destructuring of data from string
-        case 'flow':
-            return <Flow type={childProps.type} />;
+        // fix the destructuring of data from 'flow' types
         case 'grid':
             return <Grid />;
         case 'rectangles':
@@ -31,5 +29,8 @@ export default function Graphic({ type, childProps }: GraphicProps) {
                     tertiaryColor={childProps.tertiaryColor}
                 />
             )
+        default:
+            return <Flow type={childProps.type} />;
     }
+
 }

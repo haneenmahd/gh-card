@@ -1,10 +1,10 @@
 'use client';
 
 import styled from 'styled-components';
-import { Repo } from '@/lib/types';
 import colors from '@/theme/colors';
 import Graphic from '../graphic';
 import type { FC } from 'react'
+import type { Flow, Graphic as IGraphic, Repo } from '@/lib/types';
 
 const Container = styled.div`
     position: relative;
@@ -93,8 +93,8 @@ const GraphicContent = styled.div`
 
 interface CardProps {
     repo: Repo;
-    graphicType: 'basic' | 'flow' | 'grid' | 'rectangles';
-    flowType: 's-letter' | 'r-letter' | 'plus-levitated' | 'green-head';
+    graphicType: IGraphic;
+    flowType: Flow;
 }
 
 const Card: FC<CardProps> = ({ repo, graphicType, flowType }) => {

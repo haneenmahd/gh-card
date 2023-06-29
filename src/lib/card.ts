@@ -20,9 +20,13 @@ interface CardSharingOptions {
 
 /**
  * Consumes the data and provides a unique link that forwards them to the direct card
+ * Animations are already displayed in the webpage. There is no customisation available
+ * for animations right now. We will add this later.
+ * 
+ * The cards will be interactive and 3D have effects.
  */
 export const shareCard = async ({ username, repo, graphicType, flowType }: CardSharingOptions) => {
-    const baseUrl = 'https://gh-card.vercel.app';
+    const baseUrl = 'https://gh-card.vercel.app/shared';
     const url = new URL(baseUrl);
     url.searchParams.set('username', username);
     url.searchParams.set('repo', repo);

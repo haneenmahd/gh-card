@@ -2,9 +2,8 @@ import { useContext } from "react";
 import RepoInput from "./repo-input";
 import styled from "styled-components";
 import EditorContext from "@/context/EditorContext";
-import Actions from "./actions";
-import useRepo from "@/hooks/useRepo";
 import Label from "../label";
+import fetchRepo from "@/hooks/fetchRepo";
 
 const Container = styled.div`
     padding: 1rem 3rem;
@@ -22,11 +21,13 @@ const Container = styled.div`
 `;
 
 export default function Toolbar() {
-    const { username, repo, setRepoData, setUsername } = useContext(EditorContext)!;
-    const { data } = useRepo(username, repo);
+    const { username, repo, setRepo, setRepoData, setUsername } = useContext(EditorContext)!;
 
-    const handleRepoInputUpdate = () => {
-        if (username !== '' && repo !== '' && data) setRepoData(data);
+    const handleRepoInputUpdate = async () => {
+        if (username !== '' && repo !== '') {
+            const data = await fetchRepo(username, repo);
+            setRepoData(data);
+        }
     }
 
     return (
@@ -34,6 +35,7 @@ export default function Toolbar() {
             <Label>Enter your username and repository</Label>
             <RepoInput
                 setUsername={setUsername}
+                setRepo={setRepo}
                 onUpdate={handleRepoInputUpdate}
             />
         </Container>

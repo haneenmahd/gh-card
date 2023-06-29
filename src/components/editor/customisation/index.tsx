@@ -4,6 +4,7 @@ import colors from "@/theme/colors";
 import Label from "../label";
 import styled from "styled-components";
 import { Graphic } from "@/lib/types";
+import { color } from "framer-motion";
 
 const Container = styled.div`
     display: flex;
@@ -22,6 +23,7 @@ const OptionsContainer = styled.div`
   padding: 5px;
   border-radius: 30px;
   border: 1px solid ${colors.text.quarternary}40;
+  box-shadow: 0 2px 4px ${colors.text.quarternary}10;
 `;
 
 const Option = styled.button`
@@ -58,8 +60,8 @@ const Indicator = styled.span<{ width: number; left: number }>`
 export default function Customisation() {
     const options = [
         {
-            id: "blurred",
-            label: "Blur"
+            id: "basic",
+            label: "Basic"
         },
         {
             id: "flow-s-letter",
@@ -117,7 +119,7 @@ export default function Customisation() {
                 {options.map((option, index) => (
                     <Option
                         role="option"
-                        disabled={option.label === "Blur"}
+                        // disabled={option.label === "Blur"}
                         key={option.id}
                         tabIndex={0}
                         onClick={() => {

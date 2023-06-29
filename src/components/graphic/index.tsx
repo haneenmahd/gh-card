@@ -1,10 +1,10 @@
-import Blurred from "./blurred";
+import Basic from "./basic";
 import Flow from "./flow";
 import Grid from "./grid";
 import Rectangles from "./rectangles";
 
 interface GraphicProps {
-    type: 'blurred' | 'flow' | 'grid' | 'rectangles';
+    type: 'basic' | 'flow' | 'grid' | 'rectangles';
     childProps: {
         primaryColor: string;
         secondaryColor: string;
@@ -15,8 +15,8 @@ interface GraphicProps {
 
 export default function Graphic({ type, childProps }: GraphicProps) {
     switch (type) {
-        case 'blurred':
-            return <Blurred color={childProps.primaryColor} />;
+        case 'basic':
+            return <Basic />;
         case 'flow':
             return <Flow type={childProps.type} />;
         case 'grid':

@@ -32,4 +32,4 @@ export type ThemeSelection = "Light" | "Dark";
 
 export type Action = MouseEventHandler;
 
-export type Graphic = 'blurred' | 'flow-s-letter' | 'flow-r-letter' | 'flow-plus-levitated' | 'flow-green-head' | 'grid' | 'rectangles';
+export type Graphic = 'basic' | 'flow-s-letter' | 'flow-r-letter' | 'flow-plus-levitated' | 'flow-green-head' | 'grid' | 'rectangles';

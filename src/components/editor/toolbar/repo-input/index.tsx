@@ -54,10 +54,11 @@ const RoundedInput = styled.input.attrs({
 
 interface RepoInputProps {
   setUsername: (username: string) => void;
+  setRepo: (repo: string) => void;
   onUpdate: () => void;
 }
 
-export default function RepoInput({ setUsername, onUpdate }: RepoInputProps) {
+export default function RepoInput({ setUsername, setRepo, onUpdate }: RepoInputProps) {
   return (
     <Container>
       <RoundedContainer>
@@ -69,7 +70,7 @@ export default function RepoInput({ setUsername, onUpdate }: RepoInputProps) {
         <Seperator>/</Seperator>
         <RoundedInput
           placeholder='next.js'
-          onChange={e => (e.target.value)}
+          onChange={e => setRepo(e.target.value)}
           onBlur={onUpdate}
         />
       </RoundedContainer>

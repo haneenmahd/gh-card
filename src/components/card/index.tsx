@@ -18,6 +18,7 @@ const Container = styled.div`
     border: 1px solid #E1E1E1;
     background: #FFF;
     transition: 300ms;
+    box-shadow: 0 2px 4px ${colors.text.quarternary}10;
 
     *::selection {
         background: ${colors.text.primary};
@@ -26,6 +27,7 @@ const Container = styled.div`
 
 const Info = styled.div`
     padding: 2rem;
+    z-index: 1;
 `;
 
 const RepoName = styled.div`
@@ -83,6 +85,7 @@ const RepoStars = styled.div`
 `;
 
 const GraphicContent = styled.div`
+    z-index: 0;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -90,7 +93,7 @@ const GraphicContent = styled.div`
 
 interface CardProps {
     repo: Repo;
-    graphicType: 'blurred' | 'flow' | 'grid' | 'rectangles';
+    graphicType: 'basic' | 'flow' | 'grid' | 'rectangles';
     flowType: 's-letter' | 'r-letter' | 'plus-levitated' | 'green-head';
 }
 

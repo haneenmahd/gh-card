@@ -32,16 +32,8 @@ svg #third {
 }
 
 @keyframes load-svg {
-  0% {
-    transform: rotate(-30deg) translateX(-100%);
-  }
-
-  20% {
-    transform: rotate(0) translate(0);
-  }
-
   50% {
-    transform: rotate(-10deg) translate(-20%);
     opacity: 0.5;
+    filter: blur(5px);
   }
 }

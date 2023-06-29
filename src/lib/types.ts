@@ -12,6 +12,8 @@ export interface Repo {
   }
   stargazers_count: number
   language: string
+
+  currentRequestStatus: 'failed' | 'success';
 }
 
 export interface Theme {

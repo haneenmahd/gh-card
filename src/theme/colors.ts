@@ -21,7 +21,8 @@ const colors = {
         orange: '#FF6B2C',
         blue1: "#0011AE",
         blue2: "#0E22D5",
-        blue3: '#0D25FF'
+        blue3: '#0D25FF',
+        red: '#D95D56'
     }
 }
 

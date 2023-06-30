@@ -31,9 +31,13 @@ svg #third {
   animation-delay: 400ms;
 }
 
+svg #fourth {
+  animation-delay: 500ms;
+}
+
 @keyframes load-svg {
   50% {
     opacity: 0.5;
-    filter: blur(5px);
+    filter: blur(100px);
   }
 }

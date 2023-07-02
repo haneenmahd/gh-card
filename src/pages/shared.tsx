@@ -1,13 +1,12 @@
 import '../styles/globals.css';
-import { GetServerSidePropsContext } from "next";
-import { ForwardedRef, Repo } from "@/lib/types";
-import { AlertLabel } from "@/components/editor/label";
-import Card from "@/components/card";
-import fetchRepo from "@/hooks/fetchRepo";
-import colors from "@/theme/colors";
-import styled from "styled-components";
 import font from "@/theme/font";
-import { useRef } from 'react';
+import styled from "styled-components";
+import colors from "@/theme/colors";
+import Card from "@/components/card";
+import { Repo } from "@/lib/types";
+import { fetchRepo } from "@/lib/repo";
+import { GetServerSidePropsContext } from "next";
+import { AlertLabel } from "@/components/editor/label";
 
 const Container = styled.div`
     position: relative;

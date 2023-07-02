@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import RepoInput from "./repo-input";
 import styled from "styled-components";
-import EditorContext from "@/context/EditorContext";
+import RepoInput from "./repo-input";
 import Label, { AlertLabel } from "../label";
+import { fetchRepo } from "@/lib/repo";
 import { AnimatePresence } from "framer-motion";
-import fetchRepo from "@/hooks/fetchRepo";
+import EditorContext from "@/context/EditorContext";
+import { useContext, useEffect, useState } from "react";
 
 const Container = styled.div`
     display: flex;

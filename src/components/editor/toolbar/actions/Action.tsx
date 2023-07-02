@@ -1,6 +1,6 @@
-import Reject from "@/animations/Reject";
 import colors from "@/theme/colors";
 import styled, { css } from "styled-components";
+import Reject from "@/animations/Reject";
 
 const Container = styled.div<{ disabled?: boolean }>`
     display: flex;

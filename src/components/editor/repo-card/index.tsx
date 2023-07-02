@@ -25,7 +25,7 @@ const Container = styled.div<{ $exporting: boolean }>`
 
 interface RepoCardProps {
     exporting: boolean
-    ref?: React.Ref<HTMLButtonElement>;
+    ref?: React.Ref<HTMLDivElement>;
 }
 
 // eslint-disable-next-line react/display-name
@@ -42,8 +42,8 @@ const RepoCard = forwardRef<HTMLElement, RepoCardProps>(({ exporting }, forwarde
 
     return (
         <Container
-            ref={forwardedRef as ForwardedRef}
-            $exporting={exporting}>
+            $exporting={exporting}
+            ref={forwardedRef as ForwardedRef}>
             <Card
                 repo={repoData}
                 flowType={flowType as any}

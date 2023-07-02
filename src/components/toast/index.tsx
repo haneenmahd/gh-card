@@ -15,10 +15,10 @@ const presentToast = (message: string) => {
                     </div>
                 </div>
             </div>
-            <div className="flex border-l border-gray-200 bg-black hover:bg-black/70 transition-colors">
+            <div className="rounded-full m-1 flex border-l border-gray-200 bg-black hover:bg-black/70 transition-colors">
                 <button
                     onClick={() => toast.dismiss(t.id)}
-                    className="w-full border border-transparent rounded-none rounded-r-lg p-2 flex items-center justify-center text-sm font-medium text-white hover:text-white/90 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                    className="w-full border border-transparent rounded-none rounded-r-lg py-1 px-2 flex items-center justify-center text-sm font-medium text-white hover:text-white/90"
                 >
                     Close
                 </button>

@@ -1,12 +1,12 @@
 'use client';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import colors from '@/theme/colors';
 import Graphic from '../graphic';
-import type { FC } from 'react'
+import { useRef, type FC, MouseEventHandler, useState } from 'react'
 import type { Flow, Graphic as IGraphic, Repo } from '@/lib/types';
 
-const Container = styled.div`
+const Container = styled.div<{ useHoverEffects: boolean; }>`
     position: relative;
     overflow: hidden;
     display: flex;
@@ -17,7 +17,7 @@ const Container = styled.div`
     border-radius: 12px;
     border: 1px solid #E1E1E1;
     background: #FFF;
-    transition: 300ms;
+    transition-duration: 150ms;
     box-shadow: 0 2px 4px ${colors.text.quarternary}10;
 
     *::selection {
@@ -38,6 +38,15 @@ const Container = styled.div`
         width: 318px;
         height: 200px;
     }
+
+    ${({ useHoverEffects }) => useHoverEffects && css`
+        cursor: pointer;
+        user-select: none;
+
+        &:active {
+            scale: 0.98;
+        }
+    `}
 `;
 
 const Info = styled.div`
@@ -154,11 +163,53 @@ interface CardProps {
     repo: Repo;
     graphicType: IGraphic;
     flowType: Flow;
+    useHoverEffects?: boolean;
 }
 
-const Card: FC<CardProps> = ({ repo, graphicType, flowType }) => {
+const Card: FC<CardProps> = ({ repo, graphicType, flowType, useHoverEffects }) => {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const [animationId, setAnimationId] = useState(0);
+
+    const handleMouseMove: MouseEventHandler = (e) => {
+        const card = cardRef.current!;
+        const bounds = card.getBoundingClientRect();
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        const leftX = mouseX - bounds.x;
+        const topY = mouseY - bounds.y;
+        const center = {
+            x: leftX - bounds.width / 2,
+            y: topY - bounds.height / 2
+        }
+        const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
+
+        card.style.transform = `
+            scale3d(1.1, 1.1, 1.1)
+            rotate3d(
+            ${-center.y / 50},
+            ${-center.x / 50},
+            0,
+            ${Math.log(distance) * 3}deg
+            )
+        `;
+    }
+
+    const handleMouseLeave = () => {
+        const card = cardRef.current!;
+        card.style.transform = 'scale3d(1, 1, 1) rotate3d(0, 0, 0, 0deg)';
+    }
+
+    const forceUpdateAnimation = () => {
+        setAnimationId(id => id + 1);
+    }
+
     return (
-        <Container>
+        <Container
+            ref={cardRef}
+            onMouseMove={useHoverEffects ? handleMouseMove : undefined}
+            onMouseLeave={useHoverEffects ? handleMouseLeave : undefined}
+            onClick={useHoverEffects ? forceUpdateAnimation : undefined}
+            useHoverEffects={useHoverEffects ? true : false}>
             <Info>
                 <RepoName>{repo.name}</RepoName>
                 <RepoDescription>{repo.description}</RepoDescription>
@@ -172,7 +223,7 @@ const Card: FC<CardProps> = ({ repo, graphicType, flowType }) => {
                 </RepoExtraInfo>
             </Info>
 
-            <GraphicContent key={repo.id}>
+            <GraphicContent key={useHoverEffects ? animationId : repo.id}>
                 <Graphic
                     type={graphicType}
                     childProps={{

@@ -66,7 +66,7 @@ export default function Actions({ }: ActionsProps) {
                     disabled
                 />
 
-                <ToastProvider position="bottom-center" />
+                <ToastProvider position="top-center" />
             </Container>
         </div>
     )

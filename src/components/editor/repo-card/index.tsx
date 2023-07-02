@@ -7,9 +7,9 @@ const Container = styled.div`
     margin-top: 50px;
 `;
 
-interface SliderProps { }
+interface RepoCardProps { }
 
-const Slider: FC<SliderProps> = () => {
+const RepoCard: FC<RepoCardProps> = () => {
     const { graphic, repoData } = useContext(EditorContext)!;
     const graphicType = graphic.indexOf("-") !== -1 ? graphic.substring(
         0,
@@ -31,4 +31,4 @@ const Slider: FC<SliderProps> = () => {
     )
 }
 
-export default Slider
+export default RepoCard

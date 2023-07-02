@@ -23,11 +23,30 @@ const Container = styled.div`
     *::selection {
         background: ${colors.text.primary};
     }
+
+    @media screen and (max-width: 768px) {
+        width: 477px;
+        height: 300px;
+    }
+
+    @media screen and (max-width: 480px) {
+        width: 365.7px;
+        height: 230px;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 318px;
+        height: 200px;
+    }
 `;
 
 const Info = styled.div`
     padding: 2rem;
     z-index: 1;
+
+    @media screen and (max-width: 480px) {
+        padding: 1rem;
+    }
 `;
 
 const RepoName = styled.div`
@@ -35,6 +54,10 @@ const RepoName = styled.div`
     font-size: 63.723px;
     line-height: 126.5%;
     letter-spacing: -2.23px;
+
+    @media screen and (max-width: 480px) {
+        font-size: 40px;
+    }
 `;
 
 const RepoDescription = styled.div`
@@ -42,6 +65,10 @@ const RepoDescription = styled.div`
     font-size: 23.896px;
     line-height: 126.5%;
     letter-spacing: -0.836px;
+
+    @media screen and (max-width: 480px) {
+        font-size: 18px;
+    }
 `;
 
 const RepoExtraInfo = styled.div`
@@ -57,7 +84,16 @@ const RepoExtraInfo = styled.div`
     flex-shrink: 0;
     border-radius: 3.983px;
     border: 1.328px solid ${colors.text.primary};
-    background: #FFF;
+    background: #ffffff20;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    @media screen and (max-width: 480px) {
+        min-width: 165.685px;
+        height: 23px;
+        font-size: 12px;
+        padding-left: 0.35rem;
+    }
 `;
 
 const RepoAuthorName = styled.div`
@@ -67,12 +103,21 @@ const RepoAuthorName = styled.div`
     line-height: 126.5%;
     letter-spacing: -0.558px;
     text-transform: uppercase;
+
+    @media screen and (max-width: 480px) {
+        font-size: 12px;
+    }
 `;
 
 const RepoDivider = styled.div`
     height: 10.6px;
     width: 10.6px;
     background-color: ${colors.text.primary};
+
+    @media screen and (max-width: 480px) {
+        height: 6px;
+        width: 6px;
+    }
 `;
 
 const RepoStars = styled.div`
@@ -82,6 +127,10 @@ const RepoStars = styled.div`
     line-height: 126.5%;
     letter-spacing: -0.558px;
     text-transform: uppercase;
+
+    @media screen and (max-width: 480px) {
+        font-size: 12px;
+    }
 `;
 
 const GraphicContent = styled.div`
@@ -89,6 +138,16 @@ const GraphicContent = styled.div`
     position: absolute;
     bottom: 0;
     right: 0;
+
+    @media screen and (max-width: 480px) {
+        bottom: -50px;
+        right: -40px;
+
+        svg {
+            height: 200px;
+            width: 200px;
+        }
+    }
 `;
 
 interface CardProps {
@@ -113,7 +172,7 @@ const Card: FC<CardProps> = ({ repo, graphicType, flowType }) => {
                 </RepoExtraInfo>
             </Info>
 
-            <GraphicContent>
+            <GraphicContent key={repo.id}>
                 <Graphic
                     type={graphicType}
                     childProps={{

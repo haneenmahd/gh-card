@@ -4,7 +4,6 @@ import colors from "@/theme/colors";
 import Label from "../label";
 import styled from "styled-components";
 import { Graphic } from "@/lib/types";
-import { color } from "framer-motion";
 
 const Container = styled.div`
     display: flex;
@@ -44,6 +43,11 @@ const Option = styled.button`
     background: ${colors.text.quarternary}20;
     border: 1px dashed ${colors.text.quarternary};
   }
+
+  @media screen and (max-width: 480px) {
+    font-size: 14px;
+    padding: 0 5px;
+  }
 `;
 
 const Indicator = styled.span<{ width: number; left: number }>`
@@ -73,11 +77,11 @@ export default function Customisation() {
         },
         {
             id: "flow-green-head",
-            label: "Green Head"
+            label: "Heads"
         },
         {
             id: "flow-plus-levitated",
-            label: "Plus Levitated"
+            label: "Plus"
         },
         {
             id: "grid",
@@ -88,6 +92,7 @@ export default function Customisation() {
             label: "Rectangles"
         }
     ];
+    const ignoredOptions = ["rectangles", "grid"];
 
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState(-1);

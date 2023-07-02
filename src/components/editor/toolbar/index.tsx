@@ -3,11 +3,10 @@ import RepoInput from "./repo-input";
 import styled from "styled-components";
 import EditorContext from "@/context/EditorContext";
 import Label, { AlertLabel } from "../label";
+import { AnimatePresence } from "framer-motion";
 import fetchRepo from "@/hooks/fetchRepo";
-import { motion, AnimatePresence } from "framer-motion";
 
 const Container = styled.div`
-    padding: 1rem 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +16,6 @@ const Container = styled.div`
 
     @media screen and (max-width: 480px) {
         flex-direction: column;
-        padding: 0.4rem 0;
     }
 `;
 

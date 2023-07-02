@@ -36,8 +36,15 @@ svg #fourth {
 }
 
 @keyframes load-svg {
+  0% {
+    stroke-dasharray: 10;
+    stroke-dashoffset: 100;
+  }
+
   50% {
     opacity: 0.5;
-    filter: blur(100px);
+    filter: blur(10px);
+    stroke-dasharray: 0;
+    stroke-dashoffset: 0;
   }
 }

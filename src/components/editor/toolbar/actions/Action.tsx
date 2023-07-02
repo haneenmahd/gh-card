@@ -26,6 +26,10 @@ const Button = styled.button`
         fill: ${colors.basic.black};
     }
 
+    &:hover {
+        scale: 0.9;
+    }
+
     &:active {
         scale: 0.95;
         box-shadow: 0 1px 0 0 ${colors.text.quarternary}40;

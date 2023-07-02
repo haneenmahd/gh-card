@@ -38,7 +38,7 @@ const Hero: FC<HeroProps> = ({ }) => {
             < Section
                 title='Join'
                 description={<>
-                    We are currently in early beta. <u>Send us an email</u> with request to join and we'll try to get back to you eventually.
+                    We are currently in early beta. <u>Send us an email</u> with request to join and we&apos;ll try to get back to you eventually.
                 </>}
             />
         </Container >

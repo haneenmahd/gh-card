@@ -1,7 +1,6 @@
 import '../styles/globals.css'
 import font from '@/theme/font';
 import { Metadata } from 'next';
-import Provider from '@/components/auth/Provider';
 import StyledComponentsRegistry from './registry';
 import Layout from '@/components/layout';
 
@@ -30,9 +29,7 @@ export default function RootLayout({
       <body className={font.className}>
         <StyledComponentsRegistry>
           <Layout>
-            <Provider>
-              {children}
-            </Provider>
+            {children}
           </Layout>
         </StyledComponentsRegistry>
       </body>

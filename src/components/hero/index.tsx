@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 import { useState, type FC } from 'react'
-import { fontWeight } from '@/theme/font';
-import colors from '@/theme/colors';
-import PillInput from '../ui/PillInput';
-import PillButton from '../ui/PillButton';
-import { GitBranch } from 'react-feather';
-import icons from '@/theme/icons';
 import Section from '../section';
 
 const Container = styled.div`

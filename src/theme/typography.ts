@@ -6,7 +6,7 @@ const typography = {
     label3: 12,
     footnote: 15,
     tracking: -3.5,
-    icon1: 18,
+    icon1: 16,
     icon2: 14,
     icon3: 1
 };

@@ -1,9 +1,9 @@
 import '../styles/globals.css'
-import { Inter, Hanken_Grotesk } from 'next/font/google'
+import font from '@/theme/font';
 import { Metadata } from 'next';
 import Provider from '@/components/auth/Provider';
-
-const inter = Hanken_Grotesk({ style: 'normal', subsets: ['latin'], preload: true })
+import StyledComponentsRegistry from './registry';
+import Layout from '@/components/layout';
 
 export const metadata: Metadata = {
   icons: ['/'],
@@ -27,10 +27,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Provider>
-          {children}
-        </Provider>
+      <body className={font.className}>
+        <StyledComponentsRegistry>
+          <Layout>
+            <Provider>
+              {children}
+            </Provider>
+          </Layout>
+        </StyledComponentsRegistry>
       </body>
     </html>
   )

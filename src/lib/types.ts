@@ -1,6 +1,7 @@
-import { MouseEventHandler } from "react"
+import { MouseEventHandler, RefObject } from "react"
 
-export interface RepoData {
+export interface Repo {
+  id: number
   name: string
   description: string
   full_name: string
@@ -10,14 +11,9 @@ export interface RepoData {
     html_url: string
   }
   stargazers_count: number
-  watchers_count: number
   language: string
-  forks_count: number
-  open_issues_count: number
-  topics: string[]
-  license: {
-    banner_url: string
-  }
+
+  currentRequestStatus: 'failed' | 'success';
 }
 
 export interface Theme {
@@ -38,3 +34,10 @@ export interface Theme {
 export type ThemeSelection = "Light" | "Dark";
 
 export type Action = MouseEventHandler;
+
+export type Graphic = 'basic' | 'flow-s-letter' | 'flow-r-letter' | 'flow-plus-levitated' | 'flow-green-head' | 'grid' | 'rectangles';
+
+export type Flow = 's-letter' | 'r-letter' | 'plus-levitated' | 'green-head';
+
+// fixing type issues on forward ref
+export type ForwardedRef = ((instance: HTMLDivElement | null) => void) | RefObject<HTMLDivElement> | null | undefined;

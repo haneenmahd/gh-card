@@ -27,15 +27,11 @@ export default function Editor() {
             <Container className={font.className}>
                 <Toolbar />
 
-                <RepoCard />
+                <RepoCard exporting={false} />
 
                 <Customisation />
 
-                <Actions
-                    animateAction={console.log}
-                    shareAction={console.log}
-                    exportAction={console.log}
-                />
+                <Actions />
             </Container>
         </EditorProvider>
     );

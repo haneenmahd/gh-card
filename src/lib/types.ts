@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react"
+import { MouseEventHandler, RefObject } from "react"
 
 export interface Repo {
   id: number
@@ -38,3 +38,6 @@ export type Action = MouseEventHandler;
 export type Graphic = 'basic' | 'flow-s-letter' | 'flow-r-letter' | 'flow-plus-levitated' | 'flow-green-head' | 'grid' | 'rectangles';
 
 export type Flow = 's-letter' | 'r-letter' | 'plus-levitated' | 'green-head';
+
+// fixing type issues on forward ref
+export type ForwardedRef = ((instance: HTMLDivElement | null) => void) | RefObject<HTMLDivElement> | null | undefined;

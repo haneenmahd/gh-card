@@ -7,6 +7,7 @@ export default function EditorProvider({ children }: { children: React.ReactNode
     const [repo, setRepo] = useState('');
     const [graphic, setGraphic] = useState<Graphic>('basic');
     const [repoData, setRepoData] = useState<Repo>({
+        id: 0,
         name: "next.js",
         full_name: "vercel/next.js",
         owner: {
@@ -17,6 +18,7 @@ export default function EditorProvider({ children }: { children: React.ReactNode
         description: "The React Framework",
         stargazers_count: 108223,
         language: "JavaScript",
+        currentRequestStatus: "success"
     })
 
     return (

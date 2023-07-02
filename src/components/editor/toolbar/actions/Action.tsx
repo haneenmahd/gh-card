@@ -1,12 +1,23 @@
+import Reject from "@/animations/Reject";
 import colors from "@/theme/colors";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Container = styled.div<{ disabled?: boolean }>`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    ${({ disabled }) => disabled && `opacity: 0.5;`}
+    ${({ disabled }) => disabled && css`
+    opacity: 0.5;
+
+    * {
+        cursor: not-allowed;
+
+        &:active {
+            animation: ${Reject} 250ms ease;
+        }
+    }
+    `}
 `;
 
 const Button = styled.button`

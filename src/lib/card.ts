@@ -2,7 +2,7 @@ import html2canvas from "html2canvas"
 import { Flow, Graphic } from "./types";
 
 export const saveToDisk = async (element: HTMLElement, { username, repo }: { username: string, repo: string }) => {
-    const canvas = await html2canvas(element);
+    const canvas = await html2canvas(element, { scale: 4, logging: false });
     const image = canvas.toDataURL("image/png");
 
     const link = document.createElement('a');

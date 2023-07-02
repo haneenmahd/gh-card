@@ -1,5 +1,6 @@
-import html2canvas from "html2canvas"
+import html2canvas from "html2canvas";
 import { Flow, Graphic } from "./types";
+import presentToast from "@/components/toast";
 
 export const saveToDisk = async (element: HTMLElement, { username, repo }: { username: string, repo: string }) => {
     const canvas = await html2canvas(element, { scale: 4, logging: false });
@@ -25,7 +26,7 @@ interface CardSharingOptions {
  * 
  * The cards will be interactive and 3D have effects.
  */
-export const shareCard = async ({ username, repo, graphicType, flowType }: CardSharingOptions) => {
+export const shareCard = ({ username, repo, graphicType, flowType }: CardSharingOptions) => {
     const baseUrl = 'https://gh-card.vercel.app/shared';
     const url = new URL(baseUrl);
     url.searchParams.set('username', username);
@@ -33,5 +34,11 @@ export const shareCard = async ({ username, repo, graphicType, flowType }: CardS
     url.searchParams.set('graphicType', graphicType);
     url.searchParams.set('flowType', flowType);
 
-    return url;
+    copyLinkToClipboard(url.toString());
+}
+
+export const copyLinkToClipboard = async (link: string) => {
+    await navigator.clipboard.writeText(link);
+
+    presentToast('Copied URL to clipboard');
 }

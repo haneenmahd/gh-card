@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import Action from "./Action";
 import icons from "@/theme/icons";
-import { saveToDisk } from "@/lib/card";
+import { saveToDisk, shareCard } from "@/lib/card";
 import { useContext, useRef } from "react";
 import EditorContext from "@/context/EditorContext";
 import RepoCard from "../../repo-card";
+import { Toaster as ToastProvider } from "react-hot-toast";
 import { ForwardedRef } from "@/lib/types";
 
 const Container = styled.div`
@@ -18,7 +19,7 @@ interface ActionsProps { }
 
 export default function Actions({ }: ActionsProps) {
     const cardRef = useRef<HTMLDivElement>();
-    const { username, repo } = useContext(EditorContext)!;
+    const { username, repo, graphic } = useContext(EditorContext)!;
 
     const handleSave = async () => {
         const cardHtmlContent = cardRef.current!;
@@ -26,8 +27,26 @@ export default function Actions({ }: ActionsProps) {
         await saveToDisk(cardHtmlContent, { username, repo });
     }
 
+    const handleShare = () => {
+        const graphicType = graphic.indexOf("-") !== -1 ? graphic.substring(
+            0,
+            graphic.indexOf("-")
+        ) : graphic;
+
+        const flowType = graphic.indexOf("-") !== -1 ? graphic.substring(
+            graphic.indexOf("-") + 1
+        ) : '';
+
+        shareCard({
+            username,
+            repo,
+            graphicType: graphicType as any,
+            flowType: flowType as any
+        });
+    }
+
     return (
-        <>
+        <div>
             <RepoCard ref={cardRef as ForwardedRef} exporting={true} />
 
             <Container>
@@ -38,15 +57,17 @@ export default function Actions({ }: ActionsProps) {
 
                 <Action
                     icon={icons.share}
-                    action={console.log}
+                    action={handleShare}
                 />
 
                 <Action
                     icon={icons.play}
-                    action={console.log}
+                    action={() => { }}
                     disabled
                 />
+
+                <ToastProvider position="bottom-center" />
             </Container>
-        </>
+        </div>
     )
 }

@@ -29,10 +29,10 @@ const Hero: FC<HeroProps> = ({ }) => {
                 </>}
             />
 
-            < Section
+            <Section
                 title='Join'
                 description={<>
-                    We are currently in early beta and some features are still <u>work in progress</u>. So if you have any suggestions or feature requests, just <u><a href='mailto:haneen.business@skiff.com'>send us an email</a></u>.
+                    We are currently in early beta and some features are still <i>work in progress</i>. So if you have any suggestions or feature requests, just <u><a href='mailto:haneen.business@skiff.com'>send me an email</a></u>.
                 </>}
             />
         </Container >

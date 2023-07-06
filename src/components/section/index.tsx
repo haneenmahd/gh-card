@@ -17,6 +17,14 @@ const Description = styled.div`
     color: ${colors.text.secondary};
     font-size: 16px;
     line-height: 160%;
+
+    a {
+        transition: color 150ms;
+    }
+
+    a:hover {
+        color: ${colors.text.quarternary};
+    }
 `;
 
 interface SectionProps {

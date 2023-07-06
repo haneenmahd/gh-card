@@ -32,7 +32,7 @@ const Hero: FC<HeroProps> = ({ }) => {
             < Section
                 title='Join'
                 description={<>
-                    We are currently in early beta. <u>Send us an email</u> with request to join and we&apos;ll try to get back to you eventually.
+                    We are currently in early beta and some features are still <u>work in progress</u>. So if you have any suggestions or feature requests, just <u><a href='mailto:haneen.business@skiff.com'>send us an email</a></u>.
                 </>}
             />
         </Container >

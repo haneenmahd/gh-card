@@ -1,135 +1,35 @@
-import Image from 'next/image';
-import { redirect } from 'next/navigation';
-import Balancer from 'react-wrap-balancer';
-import { Newsreader } from 'next/font/google';
-import { ArrowRight } from 'lucide-react';
+'use client'
 
-const newsreader = Newsreader({
-  style: 'italic',
-  subsets: ['latin'],
-  weight: '500',
-});
+import Hero from '@/components/hero';
+import { styled } from 'styled-components';
+import NavBar from '@/components/navbar';
+import Footer from '@/components/footer';
 
-interface UserData {
-  login: string
-  avatar_url: string
-  description: string
-  html_url: string
-}
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: clamp(30vw, 560px, 100vw);
 
-export default async function page() {
-  const res = await fetch('https://api.github.com/users/haneenmahd', {
-    cache: 'force-cache'
-  });
-
-  const data: UserData = await res.json();
-
-  async function generateImage(formData: FormData) {
-    'use server';
-    const username = formData.get('repo-username');
-    const repo = formData.get('repo-name');
-    const isValid = repo !== '' && username !== '';
-
-    if (isValid) {
-      redirect(`/image?username=${username}&repo=${repo}`);
-    }
+  @media screen and (max-width: 768px) {
+    padding: 1rem;
   }
+`;
 
+export default async function Page() {
   return (
-    <div className='flex flex-col justify-between min-h-screen max-w-screen py-20 sm:gap-10 md:gap-0'>
-      <main className='z-10'>
-        <div className='flex flex-col items-center text-center px-3'>
-          <div className='cursor-pointer flex items-center justify-center gap-2 mb-5 px-2 py-1 rounded-full ring-1 ring-gray-300 hover:ring-gray-500 transition-shadow'>
-            <p className='text-sm text-gray-500 hover:text-gray-700'>Connect your GitHub account</p>
+    <Container>
+      <NavBar />
 
-            <ArrowRight size={14} />
-          </div>
-          <h1 className="text-3xl max-w-4xl md:text-5xl lg:text-6xl leading-tight tracking-tighter font-bold text-black/80">
-            <Balancer>Quickly generate GitHub repository card</Balancer>
-          </h1>
+      <Hero />
 
-          <p className='text-base md:text-base leading-relaxed md:leading-normal mt-3 md:mt-5 text-gray-500'>
-            <Balancer>Write down your name and repository to download the card</Balancer>
-          </p>
-        </div>
+      <Footer />
 
-        <form
-          action={generateImage}
-          className='mt-3 py-5 flex flex-col items-center justify-center'>
-          <fieldset className='flex flex-col gap-5'>
-            <fieldset className='flex flex-col'>
-              <label
-                className='text-gray-500 text-sm md:text-base'
-                htmlFor='repo-username'>
-                Username
-              </label>
-              <input
-                id='repo-username'
-                name='repo-username'
-                className='p-2 mt-3 bg-slate-50 rounded-md outline-none ring-1 ring-slate-300 focus:ring-slate-400 transition-shadow'
-                placeholder='haneenmahd'
-                type='text'
-                autoCapitalize='off'
-                autoComplete='off'
-                tabIndex={0}
-              />
-            </fieldset>
-
-            <fieldset className='flex flex-col'>
-              <label
-                className='text-gray-500 text-sm md:text-base'
-                htmlFor='repo-name'>
-                Repository
-              </label>
-              <input
-                id='repo-name'
-                name='repo-name'
-                className='p-2 mt-3 bg-slate-50 rounded-md outline-none ring-1 ring-slate-300 focus:ring-slate-400 transition-shadow'
-                placeholder='tfl'
-                type='text'
-                autoCapitalize='off'
-                autoComplete='off'
-                tabIndex={0}
-              />
-            </fieldset>
-          </fieldset>
-
-          <button
-            tabIndex={0}
-            className='py-2 px-10 mt-10 w-max text-white font-medium bg-gradient-to-b from-black to-black/80 hover:ring-4 ring-black/30 rounded-md outline-none transition-shadow shadow-lg shadow-black/10 invalid:bg-gray-500 outline-2 focus-visible:outline-black'
-            role='button'>
-            Generate
-          </button>
-        </form>
-      </main >
-
-      <footer className='h-full w-full text-sm md:text-base flex flex-col gap-4 items-center justify-end z-10'>
-        <div className='flex flex-col gap-2 items-center md:flex-row'>
-          <p className={`${newsreader.className} italic tracking-tighter text-gray-500`}>
-            Crafted by
-          </p>
-
-          <a
-            tabIndex={0}
-            href={data.html_url}
-            target='_blank'
-            className='w-fit flex flex-row items-center justify-center p-1 pr-2 ring-1 ring-gray-200 rounded-2xl bg-white/50 hover:bg-slate-50 shadow-sm transition-colors focus-visible:outline-black focus-visible:bg-black/5'>
-            <Image
-              className='max-w-[20px] h-fit rounded-full mr-2'
-              height={20}
-              width={20}
-              src={data.avatar_url}
-              alt={`Avatar for ${data.login}`}
-            />
-
-            <div className='text-sm font-medium'>{data.login}</div>
-          </a>
-        </div>
-
-        <p className='text-xs text-gray-500'>Copyright 2023 Haneen Mahdin</p>
-      </footer>
-
-      <div className='blur-3xl h-[300px] w-[300px] fixed left-1/2 -bottom-64 md:-bottom-44 -translate-x-1/2 bg-gradient-to-t from-black to-black/10'></div>
-    </div >
+      {/* Design the page without the tokens (no one would pay for it.) this is a personal project for learning purpose. */}
+      {/* Support adding private repos using GitHub OAuth and Access Token using Next Auth */}
+      {/* With V3 introduce tokens and monetize the app better. */}
+    </Container>
   )
 }

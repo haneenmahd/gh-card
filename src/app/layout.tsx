@@ -1,8 +1,8 @@
 import '../styles/globals.css'
-import { Inter } from 'next/font/google'
+import font from '@/theme/font';
 import { Metadata } from 'next';
-
-const inter = Inter({ style: 'normal', subsets: ['latin'], preload: true })
+import StyledComponentsRegistry from './registry';
+import Layout from '@/components/layout';
 
 export const metadata: Metadata = {
   icons: ['/'],
@@ -26,8 +26,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {children}
+      <body className={font.className}>
+        <StyledComponentsRegistry>
+          <Layout>
+            {children}
+          </Layout>
+        </StyledComponentsRegistry>
       </body>
     </html>
   )

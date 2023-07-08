@@ -11,8 +11,6 @@ const Container = styled.div`
 interface HeroProps { }
 
 const Hero: FC<HeroProps> = ({ }) => {
-    const [username, setUsername] = useState('');
-
     return (
         <Container>
             <Section
@@ -24,8 +22,7 @@ const Hero: FC<HeroProps> = ({ }) => {
                 title='About'
                 description={<>
                     Built for both personal and professional usage, designed with personal preferences. Bare-features, <s>minimal</s> boring interface.
-                    Switch between different <u>styles</u> and <u>colors</u>. Share animated videos <i>(buy some credits)</i> and images. Private repo? <i>No problem</i>.
-                    No onboarding, ads, no ever.
+                    Switch between different <u>styles</u> and <u>colors</u>.
                 </>}
             />
 
@@ -33,6 +30,14 @@ const Hero: FC<HeroProps> = ({ }) => {
                 title='Join'
                 description={<>
                     We are currently in early beta and some features are still <i>work in progress</i>. So if you have any suggestions or feature requests, just <u><a href='mailto:haneen.business@skiff.com'>send me an email</a></u>.
+                </>}
+            />
+
+            <Section
+                highlight
+                title='Upcoming features'
+                description={<>
+                    Share animated videos and GIFs. Private repo? <i>No problem</i>.
                 </>}
             />
         </Container >

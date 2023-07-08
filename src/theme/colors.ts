@@ -7,8 +7,8 @@ const colors = {
         quinary: '#CCC'
     },
     basic: {
-        white: '#fff',
-        black: '#0000'
+        white: '#ffffff',
+        black: '#000000'
     },
     background: {
         cta: 'linear-gradient(180deg, #424242 0%, #000000 100%)',

@@ -6,7 +6,7 @@ import Graphic from '../graphic';
 import { useRef, type FC, MouseEventHandler, useState } from 'react'
 import type { Flow, Graphic as IGraphic, Repo } from '@/lib/types';
 
-const Container = styled.div<{ useHoverEffects: boolean; }>`
+const Container = styled.div<{ $useHoverEffects: boolean; }>`
     position: relative;
     overflow: hidden;
     display: flex;
@@ -39,7 +39,7 @@ const Container = styled.div<{ useHoverEffects: boolean; }>`
         height: 200px;
     }
 
-    ${({ useHoverEffects }) => useHoverEffects && css`
+    ${({ $useHoverEffects }) => $useHoverEffects && css`
         cursor: pointer;
         user-select: none;
 
@@ -209,7 +209,7 @@ const Card: FC<CardProps> = ({ repo, graphicType, flowType, useHoverEffects }) =
             onMouseMove={useHoverEffects ? handleMouseMove : undefined}
             onMouseLeave={useHoverEffects ? handleMouseLeave : undefined}
             onClick={useHoverEffects ? forceUpdateAnimation : undefined}
-            useHoverEffects={useHoverEffects ? true : false}>
+            $useHoverEffects={useHoverEffects ? true : false}>
             <Info>
                 <RepoName>{repo.name}</RepoName>
                 <RepoDescription>{repo.description}</RepoDescription>

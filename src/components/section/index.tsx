@@ -43,6 +43,7 @@ const Title = styled.div<{ highlight?: boolean; }>`
         rgba(255, 0, 0, 1) 100%
       );
       background-clip: text;
+      -webkit-background-clip: text;
       background-size: 200% 100%;
       background-position: 100% 0;
       background-blend-mode: overlay;

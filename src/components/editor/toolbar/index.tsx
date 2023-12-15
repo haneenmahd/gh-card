@@ -5,6 +5,8 @@ import { fetchRepo } from "@/lib/repo";
 import { AnimatePresence } from "framer-motion";
 import EditorContext from "@/context/EditorContext";
 import { useContext, useEffect, useState } from "react";
+import { Loader } from "react-feather";
+import { motion } from 'framer-motion';
 
 const Container = styled.div`
     display: flex;
@@ -21,16 +23,19 @@ const Container = styled.div`
 
 export default function Toolbar() {
     const { username, repo, setRepo, repoData, setRepoData, setUsername } = useContext(EditorContext)!;
+    const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     const handleRepoInputUpdate = async () => {
         if (username !== '' && repo !== '') {
+            setLoading(true);
             const data = await fetchRepo(username, repo);
 
             setRepoData(previousData => {
                 if (data.id !== null && data.id !== undefined) return { ...data, currentRequestStatus: 'success' };
                 return { ...previousData, currentRequestStatus: 'failed' };
             });
+            setLoading(false);
         }
     }
 
@@ -52,6 +57,18 @@ export default function Toolbar() {
                 setRepo={setRepo}
                 onUpdate={handleRepoInputUpdate}
             />
+
+            {isLoading && (
+                <motion.div
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: 360 }}
+                    transition={{
+                        repeat: 100,
+                        repeatType: 'loop'
+                    }}>
+                    <Loader />
+                </motion.div>
+            )}
 
             <div style={{ height: 24 }}>
                 <AnimatePresence>

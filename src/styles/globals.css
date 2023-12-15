@@ -26,7 +26,7 @@ div > svg * {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  animation: load-svg 1s ease-in-out;
+  /* animation: load-svg 1s ease-in-out; */
 }
 
 svg #first {
